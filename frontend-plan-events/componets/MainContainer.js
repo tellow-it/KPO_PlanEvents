@@ -1,13 +1,15 @@
+import Head from "next/head"
 
-const MainContainer = ({children, keywords}) => {
+
+function MainContainer({ children, keywords }) {
     return (
         <>
             <Head>
-                <meta keywords={"ulbi tv, nextjs" + keywords}></meta>
+                <meta keywords={"hh, jjjjjj" + keywords}></meta>
                 <title>Главная страница</title>
             </Head>
             <div className="navbar">
-                <a href={'/'}>Главная</a> 
+                <a href={'/'}>Главная</a>
                 <a href={'/users'}>Пользователи</a>
             </div>
             <div>
@@ -15,15 +17,15 @@ const MainContainer = ({children, keywords}) => {
             </div>
             <style jsx>
                 {`
-                    .navbar {
-                        background: orange;
-                        padding: 15px;
-                    }
-                   
-                `}
+                  .navbar {
+                      background: orange;
+                      padding: 15px;
+                  }
+                 
+              `}
             </style>
         </>
     );
-};
+}
 
 export default MainContainer;
