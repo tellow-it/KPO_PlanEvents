@@ -1,3 +1,18 @@
+/* #06283D */
+/* #256D85 */
+/* #47B5FF */
+/* #DFF6FF */
+/* #411530 */
+/* #D1512D */
+/* #F5C7A9 */
+/* #F5E8E4 */
+*{
+  --color_0:#2c0c20;
+  --color_1:#D1512D;
+  --color_2:#F5C7A9;
+  --color_3:#F5E8E4;
+  margin:0;
+}
 html,
 body {
   padding: 0;
