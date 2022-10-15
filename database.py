@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-engine = create_engine('postgresql://postgres:DtnthDgjkt2002@localhost/kpo',
+engine = create_engine('postgresql://postgres:DtnthDgjkt2002@localhost/kpo_new',
                        echo=True)
 
-Base = declarative_base()
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Session = sessionmaker()
+Base = declarative_base()
