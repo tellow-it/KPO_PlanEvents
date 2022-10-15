@@ -6,6 +6,7 @@ class SignUpModel(BaseModel):
     id: Optional[int]
     username: str
     email: str
+    phone: Optional[str]
     password: str
     is_staff: Optional[bool]
 
@@ -15,6 +16,7 @@ class SignUpModel(BaseModel):
             'example': {
                 "username": "ivan",
                 "email": "mr.test@gmail.com",
+                "phone": '88005553555',
                 "password": "admin",
                 "is_staff": False
             }
