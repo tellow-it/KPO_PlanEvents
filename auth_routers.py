@@ -49,7 +49,7 @@ async def signup(user: SignUpModel):
     session.add(new_user)
     session.commit()
 
-    return new_user
+    return jsonable_encoder({"Message": 'Success registration'})
 
 
 @auth_router.post('/login')
