@@ -1,0 +1,72 @@
+/* #06283D */
+/* #256D85 */
+/* #47B5FF */
+/* #DFF6FF */
+
+.header{
+    background: var(--color_0);
+    color:white;
+    display: flex;  
+    height: 10vh;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.header_block{
+    display: flex;
+    width:65%;
+    justify-content: left;
+}
+
+.menu{
+    
+    margin:0;
+    background: var(--color_1);
+    color:white;
+    min-height: 80vh;
+    height:100%;
+    width:20%;
+    position: absolute;
+    display: flex;
+    min-width: 140px;
+}
+
+.menu>ul{
+    padding: 0;
+    width: 100%;
+    margin-top: 10vh;
+
+}
+
+.menu>ul>li{
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    padding-left: 14%;
+    justify-content: left;
+}
+
+.menu>ul>li:hover{
+    background: var(--color_2);
+}
+
+.menu>ul>li:active{
+    background: var(--color_3);
+}
+
+.content{
+    /* background: var(--color_3); */
+    background: radial-gradient(50% 50%, var(--color_3), var(--color_2));
+    margin-left: 20%;
+    min-height: 80vh;
+    position: relative;
+    min-width: 400px;
+}
+
+.footer{
+    background: var(--color_0);
+    color:white;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
