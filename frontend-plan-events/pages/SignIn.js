@@ -1,46 +1,44 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {useHttp} from '../hooks/http.hook'
-import {useMessage} from '../hooks/message.hook'
-import {AuthContext} from '../context/AuthContext'
-import styles from '../styles/SignUp.module.css'
+import React, { useContext, useEffect, useState } from "react";
+import { useHttp } from "../hooks/http.hook";
+import { useMessage } from "../hooks/message.hook";
+import { AuthContext } from "../context/AuthContext";
+import styles from "../styles/SignUp.module.css";
+import Link from "next/link";
 
 const SignIn = () => {
-  const auth = useContext(AuthContext)
-  const message = useMessage()
-  const {loading, request, error, clearError} = useHttp()
+  const auth = useContext(AuthContext);
+  const message = useMessage();
+  const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
-    email: '', username: '', password: ''
-  })
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
-    message(error)
-    clearError()
-  }, [error, message, clearError])
+    message(error);
+    clearError();
+  }, [error, message, clearError]);
 
   useEffect(() => {
     //window.M.updateTextFields()
-  }, [])
+  }, []);
 
-  const changeHandler = event => {
-    setForm({ ...form, [event.target.name]: event.target.value })
-  }
-
-  const registerHandler = async () => {
-    try {
-      const data = await request('/auth/signup', 'POST', {...form})
-      message(data.message)
-    } catch (e) {}
-  }  
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
   const loginHandler = async () => {
     try {
-      const data = await request('/auth/login', 'POST', {...form})
-      console.log(data)
-      auth.login(data.result.token.token,data.result.token.refreshToken,data.result.id)
-      auth.isAuthenticated(!!data.result.token)
-      console.log(auth)
-    } catch (e) {}
-  }
+      const data = await request("/auth/login", "POST", { ...form });
+      console.log(data);
+      auth.login(data.access, data.refresh, "backend_not_get_me_id");
+      auth.isAuthenticated = !!data.access;
+      console.log(auth, "afdsss");
+      console.log("afdsss");
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <div className={styles.root}>
@@ -50,20 +48,6 @@ const SignIn = () => {
           <div className="card-content white-text">
             <span className="card-title">Авторизация</span>
             <div>
-
-              <div className={styles.input_field}>
-                <input
-                  placeholder="Введите email"
-                  id="email"
-                  type="text"
-                  name="email"
-                  className="yellow-input"
-                  value={form.email}
-                  onChange={changeHandler}
-                />
-                
-              </div>
-
               <div className={styles.input_field}>
                 <input
                   placeholder="Введите логин"
@@ -74,7 +58,6 @@ const SignIn = () => {
                   value={form.username}
                   onChange={changeHandler}
                 />
-                
               </div>
 
               <div className={styles.input_field}>
@@ -87,32 +70,25 @@ const SignIn = () => {
                   value={form.password}
                   onChange={changeHandler}
                 />
-                
               </div>
-
             </div>
           </div>
           <div className={styles.card_action}>
-            <a href='#'>Нет аккаунта? Регистрация</a>
+            <Link href={"/SignUp"}>Нет аккаунта? Регистрация</Link>
             <button
               className="btn yellow darken-4"
-              style={{marginRight: 10}}
+              style={{ marginRight: 10 }}
               disabled={loading}
               onClick={loginHandler}
-            >Войти
+              type="submit"
+            >
+              Войти
             </button>
-            
-            {/* <button
-              className="btn yellow darken-4"
-              onClick={registerHandler}
-              disabled={loading}
-            >Регистрация
-            </button> */}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SignIn;

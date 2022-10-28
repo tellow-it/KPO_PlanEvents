@@ -7,7 +7,6 @@ export const useAuth = () =>
     const [token, setToken] = useState(null)
     const [refreshToken, setrRefreshToken] = useState(null)  
     const [id, setId] = useState(null)  
-    const [language, setLanguage]= useState('en')
     
     const login = useCallback((jwtToken, refreshToken,id) => 
     {
@@ -34,12 +33,11 @@ export const useAuth = () =>
     useEffect(() => 
     {
         const data = JSON.parse(localStorage.getItem(storageName))
-        setLanguage(document.cookie.split('=')[1])
         if (data && data.token)
         {
             login(data.token,data.refreshToken, data.id)
         }
     }, [login])
 
-    return { login, logout, token, refreshToken, id ,language,setLanguage:(e)=>{document.cookie="language="+e; setLanguage(e)}}
+    return { login, logout, token, refreshToken, id }
 }

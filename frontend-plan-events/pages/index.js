@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import MainContainer from "../componets/MainContainer";
+import { useRouter } from 'next/router'
 
 let array = [
   { name: "event_name_1", id: 1, description: "Lorem ipsum dolor sit amet", data:"25.10.2022" },
@@ -19,6 +20,9 @@ let array = [
 ];
 
 export default function Home() {
+  const router = useRouter()
+
+  console.log(router);
   return (
     <MainContainer keywords={"home"}>
       <div className={styles.events}>
