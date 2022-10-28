@@ -10,13 +10,13 @@
   height: 10vh;
   width: 100%;
   margin-top: 15px;
-  border: 2px solid var(--color_0);
+  /* border: 2px solid var(--color_0); */
   border-radius: 5px;
   padding: 0 15px;
-  color: var(--color_0);
+  color: var(--color_4);
 }
 .event:hover{
-  border: 2px solid var(--color_1);
+  border-left: 2px solid var(--color_1);
 }
 .event:hover>.event_head{
   color:var(--color_1);;

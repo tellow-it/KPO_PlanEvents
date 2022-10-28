@@ -7,10 +7,11 @@
 /* #F5C7A9 */
 /* #F5E8E4 */
 *{
-  --color_0:#2c0c20;
-  --color_1:#D1512D;
-  --color_2:#F5C7A9;
-  --color_3:#F5E8E4;
+  --color_0:#e96f04;
+  --color_1:#FFC700;
+  --color_2:#444;
+  --color_3:white;
+  --color_4:rgba(30, 54, 59, 1);
   margin:0;
 }
 html,

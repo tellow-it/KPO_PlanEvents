@@ -4,10 +4,10 @@ import styles from "../styles/MainContainer.module.css"
 
 function MainContainer({ children, keywords }) {
     return (
-        <>
+        <div className={styles.container}>
             <Head>
                 <meta keywords={keywords}></meta>
-                <title>Главная страница</title>
+                <title>{keywords}</title>
             </Head>
             {/* <div className="navbar">
                 <a href={'/'}>Главная</a>
@@ -53,7 +53,7 @@ function MainContainer({ children, keywords }) {
             <footer className={styles.footer}>
                 Lorem Lorem Lorem
             </footer>
-        </>
+        </div>
     );
 }
 

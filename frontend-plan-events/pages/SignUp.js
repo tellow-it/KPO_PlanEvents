@@ -2,7 +2,9 @@ import React, {useContext, useEffect, useState} from 'react'
 import {useHttp} from '../hooks/http.hook'
 import {useMessage} from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
+import MainContainer from "../componets/MainContainer";
 
+import styles from "../styles/SignUp.module.css"
 
 const SignUp = () => {
   const auth = useContext(AuthContext)
@@ -44,15 +46,16 @@ const SignUp = () => {
   }
 
   return (
-    <div className="row">
-      <div className="col s6 offset-s3">
+    // <MainContainer keywords={"signup"}>
+    <div className={styles.root}>
+      <div className={styles.content}>
         <h1>Welcome</h1>
         <div className="card blue darken-1">
           <div className="card-content white-text">
             <span className="card-title">Регистрация</span>
             <div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите email"
                   id="email"
@@ -62,10 +65,10 @@ const SignUp = () => {
                   value={form.email}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Email</label>
+                {/* <label htmlFor="email">Email</label> */}
               </div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите логин"
                   id="login"
@@ -75,10 +78,10 @@ const SignUp = () => {
                   value={form.username}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Логин</label>
+                {/* <label htmlFor="email">Логин</label> */}
               </div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите пароль"
                   id="password"
@@ -88,12 +91,12 @@ const SignUp = () => {
                   value={form.password}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Пароль</label>
+                {/* <label htmlFor="email">Пароль</label> */}
               </div>
 
             </div>
           </div>
-          <div className="card-action">
+          <div className={styles.card_action}>
             <a href='#'>Есть аккаунт? Вход</a>
             {/* <button
               className="btn yellow darken-4"
@@ -112,6 +115,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
+    /* </MainContainer> */
   )
 }
 

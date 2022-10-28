@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {useHttp} from '../hooks/http.hook'
 import {useMessage} from '../hooks/message.hook'
 import {AuthContext} from '../context/AuthContext'
-//import '../styles/SignIn.css'
+import styles from '../styles/SignUp.module.css'
 
 const SignIn = () => {
   const auth = useContext(AuthContext)
@@ -43,15 +43,15 @@ const SignIn = () => {
   }
 
   return (
-    <div className="row">
-      <div className="col s6 offset-s3">
+    <div className={styles.root}>
+      <div className={styles.content}>
         <h1>Welcome</h1>
         <div className="card blue darken-1">
           <div className="card-content white-text">
             <span className="card-title">Авторизация</span>
             <div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите email"
                   id="email"
@@ -61,10 +61,10 @@ const SignIn = () => {
                   value={form.email}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Email</label>
+                
               </div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите логин"
                   id="login"
@@ -74,10 +74,10 @@ const SignIn = () => {
                   value={form.username}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Логин</label>
+                
               </div>
 
-              <div className="input-field">
+              <div className={styles.input_field}>
                 <input
                   placeholder="Введите пароль"
                   id="password"
@@ -87,13 +87,13 @@ const SignIn = () => {
                   value={form.password}
                   onChange={changeHandler}
                 />
-                <label htmlFor="email">Пароль</label>
+                
               </div>
 
             </div>
           </div>
-          <div className="card-action">
-           
+          <div className={styles.card_action}>
+            <a href='#'>Нет аккаунта? Регистрация</a>
             <button
               className="btn yellow darken-4"
               style={{marginRight: 10}}
@@ -101,7 +101,7 @@ const SignIn = () => {
               onClick={loginHandler}
             >Войти
             </button>
-            <a href='#'>Нет аккаунта? Регистрация</a>
+            
             {/* <button
               className="btn yellow darken-4"
               onClick={registerHandler}
