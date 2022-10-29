@@ -21,6 +21,7 @@ def init_app():
         'http://localhost',
         'http://localhost:3000',
         'http://localhost:8000',
+        'https://party-manager-2.herokuapp.com'
     ]
 
     app.add_middleware(
