@@ -1,5 +1,3 @@
-from multiprocessing import synchronize
-from statistics import mode
 from typing import Generic, TypeVar
 from sqlalchemy import update as sql_update, delete as sql_delete
 from sqlalchemy.future import select
@@ -21,7 +19,7 @@ class BaseRepo:
     @classmethod
     async def get_all(cls):
         query = select(cls.model)
-        return(await db.execute(query)).scalars().all()
+        return (await db.execute(query)).scalars().all()
 
     @classmethod
     async def get_by_id(cls, model_id: str):

@@ -2,7 +2,6 @@ from datetime import date
 from typing import Optional
 from sqlalchemy import Enum, table
 from sqlmodel import SQLModel, Field, Relationship
-from app.model.mixins import TimeMixin
 
 
 class Sex(str, Enum):
@@ -10,14 +9,13 @@ class Sex(str, Enum):
     FEMALE = "FEMALE"
 
 
-class Person(SQLModel, TimeMixin, table=True):
+class Person(SQLModel, table=True):
     __tablename__ = "person"
 
     id: Optional[str] = Field(None, primary_key=True, nullable=False)
     name: str
     birth: date
     sex: Sex
-    profile: str
     phone_number: str
 
     users: Optional["Users"] = Relationship(

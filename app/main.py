@@ -1,12 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import db
-from app.service.auth_service import generate_role
-
-# origins = [
-#     "http://localhost:3000",
-#     "http://localhost:8000"
-# ]
 
 
 def init_app():
@@ -21,7 +15,7 @@ def init_app():
         'http://localhost',
         'http://localhost:3000',
         'http://localhost:8000',
-        'https://party-manager-2.herokuapp.com'
+        'https://party-manager-2.herokuapp.com',
     ]
 
     app.add_middleware(
@@ -35,7 +29,6 @@ def init_app():
     @app.on_event("startup")
     async def startup():
         await db.create_all()
-        await generate_role()
 
     @app.on_event("shutdown")
     async def shutdown():

@@ -12,6 +12,5 @@ class UserService:
                        Person.name,
                        Person.birth,
                        Person.sex,
-                       Person.profile,
                        Person.phone_number).join_from(Users, Person).where(Users.username == username)
         return (await db.execute(query)).mappings().one()

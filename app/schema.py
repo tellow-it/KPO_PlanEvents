@@ -22,7 +22,6 @@ class RegisterSchema(BaseModel):
     phone_number: str
     birth: str
     sex: Sex
-    profile: str = "base64"
 
     # phone number validation
 
