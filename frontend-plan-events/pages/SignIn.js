@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import styles from "../styles/SignUp.module.css";
 import Link from "next/link";
 
+
 const SignIn = () => {
   const auth = useContext(AuthContext);
   const message = useMessage();
@@ -19,9 +20,6 @@ const SignIn = () => {
     clearError();
   }, [error, message, clearError]);
 
-  useEffect(() => {
-    //window.M.updateTextFields()
-  }, []);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -33,8 +31,6 @@ const SignIn = () => {
       console.log(data);
       auth.login(data.access, data.refresh, "backend_not_get_me_id");
       auth.isAuthenticated = !!data.access;
-      console.log(auth, "afdsss");
-      console.log("afdsss");
     } catch (e) {
       console.error(e);
     }
