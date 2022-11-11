@@ -43,12 +43,19 @@ const SignUp = () => {
   return (
     <div className={styles.root}>
       <div className={styles.content}>
-        <h1>Welcome</h1>
+        <div className={styles.logo}>
+          <img src="/icons/logo.png"/>
+        </div>
+
         <div className="card blue darken-1">
           <div className="card-content white-text">
-            <span className="card-title">Регистрация</span>
+           
             <div>
               <div className={styles.input_field}>
+                <div className={styles.img_email} >
+                  <img src="/icons/email.png"/>
+                </div>
+                
                 <input
                   placeholder="Введите email"
                   id="email"
@@ -61,6 +68,9 @@ const SignUp = () => {
               </div>
 
               <div className={styles.input_field}>
+                <div className={styles.img_container}>
+                  <img src="/icons/password.png"/>
+                </div>
                 <input
                   placeholder="Введите логин"
                   id="login"
@@ -72,6 +82,9 @@ const SignUp = () => {
                 />
               </div>
               <div className={styles.input_field}>
+                <div className={styles.img_container}>
+                  <img src="/icons/password.png"/>
+                </div>
                 <input
                   placeholder="Введите номер телефона"
                   id="login"
@@ -83,6 +96,9 @@ const SignUp = () => {
                 />
               </div>
               <div className={styles.input_field}>
+                <div className={styles.img_container}>
+                  <img src="/icons/password.png"/>
+                </div>
                 <input
                   placeholder="Введите пароль"
                   id="password"
@@ -98,7 +114,7 @@ const SignUp = () => {
           <div className={styles.card_action}>
           <Link href={'/SignIn'}>Есть аккаунт? Вход</Link>
             <button
-              className="btn yellow darken-4"
+              className={styles.button_signin}
               onClick={registerHandler}
               disabled={loading}
             >

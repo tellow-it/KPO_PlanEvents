@@ -3,24 +3,89 @@
     font-size: 20px;
     height: 70vh;
     margin: 0 auto;
-    width:40%;
-    min-width: 150px;
+    width:35%;
+    min-width: 220px;
     display: flex;
     flex-direction: column;
-    color:var(--color_4)
+    color:var(--color_4);
+    
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.logo>img{
+    background-size: cover;
+    height: 190px;
+}
+
+.title{
+    margin-top: 20px;
+    width:170px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    text-align: center;
 }
 
 .content{
-    
     height:100%;
 }
 
+.input_field{
+    padding: 8px;
+    padding-left: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5em;
+    border-radius: 120px;
+    border: 1px solid var(--color_1);
+}
+
+.input_field>.img_container>img{
+    background-size: cover;
+    width:24px;
+    height: 30px;
+}
+
+.img_email{
+    display: flex;
+    align-items: center;
+}
+
+.input_field>.img_email>img{
+    background-size: cover;
+    width:31px;
+    height: 25px;
+}
+
+.img_container{
+    display: flex;
+    align-items: center;
+}
+
 .input_field>input{
-    margin-top: 0.5em;
-    width:100%;
+    font-size: 0.8em;
+    margin-left: 10px;
+    width:80%;
     height: 2em;
-    border-radius: 5px;
-    border: 1px solid var(--color_4);
+    border: 0px;
+    outline:none;
+}
+
+.button_signin, .button_signup{
+    margin-top: 10px;
+    font-size: 16px;
+    background: #FFFF00;
+    outline:none;
+    border-radius: 20px;
+    padding: 15px;
+    border: 0px;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+}
+.button_signin:active{
+    background: #D8D015;
 }
 
 .card_action{
@@ -28,7 +93,7 @@
     display: flex;
     flex-direction: column;
 }
-
+/* 
 .card_action>button{
     background-color: #0563b4;
     color:white;
@@ -38,14 +103,10 @@
     margin-top: 0.5em;
     border-radius: 5px;
     border: 1px solid var(--color_4);
-}
-
-.card_action>button:active{
-    background-color: var(--color_1);
-    color:var(--color_4);
-}
+} */
 
 .card_action>a{
     color:blue;
     font-size: 15px;
+    padding-left: 10px;
 }
