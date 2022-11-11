@@ -1,14 +1,16 @@
 .root{
     padding-top: 20px;
     font-size: 20px;
-    height: 70vh;
+    height: auto;
     margin: 0 auto;
+    margin-top:20px;
     width:35%;
     min-width: 220px;
     display: flex;
     flex-direction: column;
     color:var(--color_4);
-    
+    border-radius: 40px;
+    background-color: white;
 }
 .logo{
     display: flex;
@@ -32,6 +34,27 @@
 
 .content{
     height:100%;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.form_error{
+    font-size: 0.8em;
+    color:red;
+    margin-left: 25px;
+
+}
+.form_success{
+    font-size: 0.8em;
+    color:green;
+    margin-left: 25px;
+
+}
+.form_required{
+    font-size: 0.8em;
+    color:rgb(207, 110, 20);
+    margin-left: 25px;
+
 }
 
 .input_field{
@@ -45,6 +68,60 @@
     border: 1px solid var(--color_1);
 }
 
+.success_input_field{
+    padding: 8px;
+    padding-left: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5em;
+    border-radius: 120px;
+    border: 1px solid green;
+}
+
+.success_input_field>.img_container>img{
+    filter: hue-rotate(30deg);
+    background-size: cover;
+    width:24px;
+    height: 30px;
+}
+
+.required_input_field{
+    padding: 8px;
+    padding-left: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5em;
+    border-radius: 120px;
+    border: 1px solid rgb(207, 110, 20);
+}
+
+.required_input_field>.img_container>img{
+    filter: hue-rotate(-50deg);
+    background-size: cover;
+    width:24px;
+    height: 30px;
+}
+
+.error_input_field{
+    padding: 8px;
+    padding-left: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.5em;
+    border-radius: 120px;
+    border: 1px solid red;
+}
+
+.error_input_field>.img_container>img{
+    filter: hue-rotate(290deg);
+    background-size: cover;
+    width:24px;
+    height: 30px;
+}
+
 .input_field>.img_container>img{
     background-size: cover;
     width:24px;
@@ -55,7 +132,24 @@
     display: flex;
     align-items: center;
 }
-
+.success_input_field>.img_email>img{
+    filter: hue-rotate(30deg);
+    background-size: cover;
+    width:31px;
+    height: 25px;
+}
+.error_input_field>.img_email>img{
+    filter: hue-rotate(290deg);
+    background-size: cover;
+    width:31px;
+    height: 25px;
+}
+.required_input_field>.img_email>img{
+    filter: hue-rotate(-30deg);
+    background-size: cover;
+    width:31px;
+    height: 25px;
+}
 .input_field>.img_email>img{
     background-size: cover;
     width:31px;
@@ -67,7 +161,7 @@
     align-items: center;
 }
 
-.input_field>input{
+.input_field>input, .error_input_field>input, .success_input_field>input, .required_input_field>input{
     font-size: 0.8em;
     margin-left: 10px;
     width:80%;
@@ -85,6 +179,7 @@
     padding: 15px;
     border: 0px;
     box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+    margin-bottom: 15px;
 }
 .button_signin:active{
     background: #D8D015;

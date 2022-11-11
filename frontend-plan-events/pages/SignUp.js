@@ -39,6 +39,12 @@ const SignUp = () => {
     //window.M.updateTextFields()
   }, []);
 
+  const [styleForm, setStyleForm] = useState({
+    username: styles.input_field,
+    password: styles.input_field,
+    email: styles.input_field,
+    phone: styles.input_field
+  });
 
   const registerHandler = async (form) => {
     try {
@@ -47,6 +53,27 @@ const SignUp = () => {
       router.push("/SignIn");
     } catch (e) {}
   };
+
+  const conditionFieldRender = (errors, touched,field) => {
+		let elem = {};
+    if(errors[field] && touched[field]){
+      if(errors[field] == "Required"){
+        styleForm[field] = styles.error_input_field;
+				elem = (
+					<div className={styles.form_error}>{errors[field]}</div>
+				);
+      }else{
+        styleForm[field] = styles.error_input_field;
+        elem =(
+          <div className={styles.form_error}>{errors[field]}</div>
+        );
+      }
+    }else{
+      styleForm[field] = styles.input_field;
+			elem = (null);
+    }
+		return elem;
+  }
 
   return (
     <div className={styles.root}>
@@ -70,7 +97,8 @@ const SignUp = () => {
               <Form>
                 <div className="card-content white-text">
                   <div>
-                    <div className={styles.input_field}>
+				  	{conditionFieldRender(errors, touched, "email")}
+                    <div className={styleForm.email}>
                       <div className={styles.img_email}>
                         <img src="/icons/email.png" />
                       </div>
@@ -82,12 +110,13 @@ const SignUp = () => {
                         name="email"
                         className="yellow-input"
                       />
-                      {errors.email && touched.email ? (
-                        <div>{errors.email}</div>
-                      ) : null}
+                      
                     </div>
 
-                    <div className={styles.input_field}>
+					
+
+                    {conditionFieldRender(errors, touched, "username")}
+                    <div className={styleForm.username}>
                       <div className={styles.img_container}>
                         <img src="/icons/password.png" />
                       </div>
@@ -98,11 +127,10 @@ const SignUp = () => {
                         name="username"
                         className="yellow-input"
                       />
-                      {errors.username && touched.username ? (
-                        <div>{errors.username}</div>
-                      ) : null}
+                      
                     </div>
-                    <div className={styles.input_field}>
+					{conditionFieldRender(errors, touched, "phone")}
+                    <div className={styleForm.phone}>
                       <div className={styles.img_container}>
                         <img src="/icons/password.png" />
                       </div>
@@ -113,11 +141,12 @@ const SignUp = () => {
                         name="phone"
                         className="yellow-input"
                       />
-                      {errors.phone && touched.phone ? (
-                        <div>{errors.phone}</div>
-                      ) : null}
+                      
                     </div>
-                    <div className={styles.input_field}>
+
+					{conditionFieldRender(errors, touched, "password")}
+				
+                    <div className={styleForm.password}>
                       <div className={styles.img_container}>
                         <img src="/icons/password.png" />
                       </div>
@@ -128,16 +157,14 @@ const SignUp = () => {
                         name="password"
                         className="yellow-input"
                       />
-                      {errors.password && touched.password ? (
-                        <div>{errors.password}</div>
-                      ) : null}
+                      
                     </div>
                   </div>
                 </div>
                 <div className={styles.card_action}>
                   <Link href={"/SignIn"}>Есть аккаунт? Вход</Link>
                   <button
-                    className={styles.button_signin}
+                    className={styles.button_signup}
                     type="submit"
                     disabled={loading}
                   >
