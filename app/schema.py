@@ -6,7 +6,6 @@ from typing import TypeVar, Optional
 from pydantic import BaseModel, validator
 from app.model.person import Sex
 
-
 T = TypeVar('T')
 
 # get root logger
@@ -14,7 +13,6 @@ logger = logging.getLogger(__name__)
 
 
 class RegisterSchema(BaseModel):
-
     username: str
     email: str
     name: str
@@ -26,21 +24,18 @@ class RegisterSchema(BaseModel):
     # phone number validation
 
     @validator("phone_number")
-    def phone_validation(cls, v):
-        logger.debug(f"phone in 2 validatior: {v}")
-
-        # regex phone number
-        regex = r"^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4,6}$"
-        if v and not re.search(regex, v, re.I):
+    def phone_validation(cls, number):
+        logger.debug(f"phone in 2 validatior: {number}")
+        if len(number) > 12:
             raise HTTPException(status_code=400, detail="Invalid input phone number!")
-        return v
+        return number
 
     # Sex validation
     @validator("sex")
-    def sex_validation(cls, v):
-        if hasattr(Sex, v) is False:
+    def sex_validation(cls, sex_status):
+        if hasattr(Sex, sex_status) is False:
             raise HTTPException(status_code=400, detail="Invalid input sex")
-        return v
+        return sex_status
 
 
 class LoginSchema(BaseModel):
