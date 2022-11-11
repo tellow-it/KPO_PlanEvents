@@ -17,13 +17,15 @@
 }
 .logo>img{
     background-size: cover;
-    height: 190px;
+    /* height: 190px; */
+    width:60%;
 }
 
 .title{
-    margin-top: 20px;
-    width:170px;
     margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width:170px;
     font-size: 0.8em;
     text-align: center;
 }

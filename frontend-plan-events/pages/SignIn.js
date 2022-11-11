@@ -49,7 +49,7 @@ const SignIn = () => {
               <h3>Добрый день!</h3>
               <p>Введите свою почту и пароль</p>
             </div>
-            <div>
+            <div  className={styles.form}>
               <div className={styles.input_field}>
                 <div className={styles.img_email} >
                   <img src="/icons/email.png"/>
