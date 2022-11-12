@@ -95,7 +95,7 @@ def test_long_password(browser):
     
     time.sleep(1)
 
-def test_success_password(browser):
+def test_success_login(browser):
     # Зайти на сайт https://mail.yandex.ru/
     browser.get(link)
     browser.implicitly_wait(10)

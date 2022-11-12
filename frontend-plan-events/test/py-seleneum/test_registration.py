@@ -116,8 +116,123 @@ def test_long_password(browser):
     
     time.sleep(1)
 
-def test_success_password(browser):
-    # Зайти на сайт https://mail.yandex.ru/
+def test_long_email(browser):
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_email = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите email']")
+    input_email.send_keys("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaap19052016@gmail.com")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
+    username_error_div_information = browser.find_element(By.NAME, 'username-error-messege')
+    password_error_div_information = browser.find_element(By.NAME, 'password-error-messege')
+
+    assert password_error_div_information.text=="Required" 
+    assert username_error_div_information.text=="Required"
+
+    email_error_div_information = browser.find_element(By.NAME, 'email-error-messege')
+    assert email_error_div_information.text=="Too Long!"
+    phone_error_div_information = browser.find_element(By.NAME, 'phone-error-messege')
+    assert phone_error_div_information.text=="Required"  
+    
+    time.sleep(1)
+
+def test_bad_email(browser):
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_email = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите email']")
+    input_email.send_keys("aaa190520")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
+    username_error_div_information = browser.find_element(By.NAME, 'username-error-messege')
+    password_error_div_information = browser.find_element(By.NAME, 'password-error-messege')
+
+    assert password_error_div_information.text=="Required" 
+    assert username_error_div_information.text=="Required"
+
+    email_error_div_information = browser.find_element(By.NAME, 'email-error-messege')
+    assert email_error_div_information.text=="Invalid email"
+    phone_error_div_information = browser.find_element(By.NAME, 'phone-error-messege')
+    assert phone_error_div_information.text=="Required"  
+    
+    time.sleep(1)
+
+def test_long_email(browser):
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_email = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите email']")
+    input_email.send_keys("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaap19052016@gmail.com")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
+    username_error_div_information = browser.find_element(By.NAME, 'username-error-messege')
+    password_error_div_information = browser.find_element(By.NAME, 'password-error-messege')
+
+    assert password_error_div_information.text=="Required" 
+    assert username_error_div_information.text=="Required"
+
+    email_error_div_information = browser.find_element(By.NAME, 'email-error-messege')
+    assert email_error_div_information.text=="Too Long!"
+    phone_error_div_information = browser.find_element(By.NAME, 'phone-error-messege')
+    assert phone_error_div_information.text=="Required"  
+    
+    time.sleep(1)
+
+
+def test_small_phone(browser):
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_phone = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите номер телефона']")
+    input_phone.send_keys("78879")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
+    username_error_div_information = browser.find_element(By.NAME, 'username-error-messege')
+    password_error_div_information = browser.find_element(By.NAME, 'password-error-messege')
+
+    assert password_error_div_information.text=="Required" 
+    assert username_error_div_information.text=="Required"
+
+    email_error_div_information = browser.find_element(By.NAME, 'email-error-messege')
+    assert email_error_div_information.text=="Required"
+    phone_error_div_information = browser.find_element(By.NAME, 'phone-error-messege')
+    assert phone_error_div_information.text=="Too Short!"  
+    
+    time.sleep(1)
+
+def test_long_phone(browser):
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_phone = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите номер телефона']")
+    input_phone.send_keys("7777777777777777777777777777777777777")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
+    username_error_div_information = browser.find_element(By.NAME, 'username-error-messege')
+    password_error_div_information = browser.find_element(By.NAME, 'password-error-messege')
+
+    assert password_error_div_information.text=="Required" 
+    assert username_error_div_information.text=="Required"
+
+    email_error_div_information = browser.find_element(By.NAME, 'email-error-messege')
+    assert email_error_div_information.text=="Required"
+    phone_error_div_information = browser.find_element(By.NAME, 'phone-error-messege')
+    assert phone_error_div_information.text=="Too Long!"  
+    
+    time.sleep(1)
+
+def test_success_registration(browser):
     browser.get(link)
     browser.implicitly_wait(10)
 
