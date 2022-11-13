@@ -10,9 +10,9 @@ import { useRouter } from "next/router";
 import styles from "../styles/SignUp.module.css";
 
 const SignupSchema = Yup.object().shape({
-  phone: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
+  phone: Yup.number()
+    .min(10000000000, "Too Short!")
+    .max(99999999999, "Too Long!")
     .required("Required"),
   username: Yup.string()
     .min(2, "Too Short!")
@@ -22,7 +22,10 @@ const SignupSchema = Yup.object().shape({
     .min(4, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string()
+    .email("Invalid email")
+    .max(50, "Too Long!")
+    .required("Required"),
 });
 
 const SignUp = () => {
@@ -43,37 +46,33 @@ const SignUp = () => {
     username: styles.input_field,
     password: styles.input_field,
     email: styles.input_field,
-    phone: styles.input_field
+    phone: styles.input_field,
   });
 
   const registerHandler = async (form) => {
     try {
       const data = await request("/auth/signup", "POST", { ...form });
-      //to do check toast 
+      //to do check toast
       router.push("/SignIn");
     } catch (e) {}
   };
 
-  const conditionFieldRender = (errors, touched,field) => {
-		let elem = {};
-    if(errors[field] && touched[field]){
-      if(errors[field] == "Required"){
+  const conditionFieldRender = (errors, touched, field) => {
+    let elem = {};
+    if (errors[field] && touched[field]) {
+      if (errors[field] == "Required") {
         styleForm[field] = styles.error_input_field;
-				elem = (
-					<div className={styles.form_error}>{errors[field]}</div>
-				);
-      }else{
+        elem = <div name={`${field}-error-messege`} className={styles.form_error}>{errors[field]}</div>;
+      } else {
         styleForm[field] = styles.error_input_field;
-        elem =(
-          <div className={styles.form_error}>{errors[field]}</div>
-        );
+        elem = <div name={`${field}-error-messege`} className={styles.form_error}>{errors[field]}</div>;
       }
-    }else{
+    } else {
       styleForm[field] = styles.input_field;
-			elem = (null);
+      elem = null;
     }
-		return elem;
-  }
+    return elem;
+  };
 
   return (
     <div className={styles.root}>
@@ -97,7 +96,7 @@ const SignUp = () => {
               <Form>
                 <div className="card-content white-text">
                   <div>
-				  	{conditionFieldRender(errors, touched, "email")}
+                    {conditionFieldRender(errors, touched, "email")}
                     <div className={styleForm.email}>
                       <div className={styles.img_email}>
                         <img src="/icons/email.png" />
@@ -110,10 +109,7 @@ const SignUp = () => {
                         name="email"
                         className="yellow-input"
                       />
-                      
                     </div>
-
-					
 
                     {conditionFieldRender(errors, touched, "username")}
                     <div className={styleForm.username}>
@@ -127,9 +123,8 @@ const SignUp = () => {
                         name="username"
                         className="yellow-input"
                       />
-                      
                     </div>
-					{conditionFieldRender(errors, touched, "phone")}
+                    {conditionFieldRender(errors, touched, "phone")}
                     <div className={styleForm.phone}>
                       <div className={styles.img_container}>
                         <img src="/icons/password.png" />
@@ -141,11 +136,10 @@ const SignUp = () => {
                         name="phone"
                         className="yellow-input"
                       />
-                      
                     </div>
 
-					{conditionFieldRender(errors, touched, "password")}
-				
+                    {conditionFieldRender(errors, touched, "password")}
+
                     <div className={styleForm.password}>
                       <div className={styles.img_container}>
                         <img src="/icons/password.png" />
@@ -157,7 +151,6 @@ const SignUp = () => {
                         name="password"
                         className="yellow-input"
                       />
-                      
                     </div>
                   </div>
                 </div>
