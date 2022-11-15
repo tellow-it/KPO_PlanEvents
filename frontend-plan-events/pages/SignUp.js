@@ -75,98 +75,100 @@ const SignUp = () => {
   };
 
   return (
-    <div className={styles.root}>
-      <div className={styles.content}>
-        <div className={styles.logo}>
-          <img src="/icons/logo.png" />
-        </div>
+    <div className={styles.body}>
+      <div className={styles.root}>
+        <div className={styles.content}>
+          <div className={styles.logo}>
+            <img src="/icons/logo.png" />
+          </div>
 
-        <div className="card blue darken-1">
-          <Formik
-            initialValues={{
-              email: "",
-              username: "",
-              password: "",
-              phone: "",
-            }}
-            validationSchema={SignupSchema}
-            onSubmit={registerHandler}
-          >
-            {({ errors, touched }) => (
-              <Form>
-                <div className="card-content white-text">
-                  <div>
-                    {conditionFieldRender(errors, touched, "email")}
-                    <div className={styleForm.email}>
-                      <div className={styles.img_email}>
-                        <img src="/icons/email.png" />
+          <div className="card blue darken-1">
+            <Formik
+              initialValues={{
+                email: "",
+                username: "",
+                password: "",
+                phone: "",
+              }}
+              validationSchema={SignupSchema}
+              onSubmit={registerHandler}
+            >
+              {({ errors, touched }) => (
+                <Form>
+                  <div className="card-content white-text">
+                    <div>
+                      {conditionFieldRender(errors, touched, "email")}
+                      <div className={styleForm.email}>
+                        <div className={styles.img_email}>
+                          <img src="/icons/email.png" />
+                        </div>
+
+                        <Field
+                          placeholder="Введите email"
+                          id="email"
+                          type="email"
+                          name="email"
+                          className="yellow-input"
+                        />
                       </div>
 
-                      <Field
-                        placeholder="Введите email"
-                        id="email"
-                        type="email"
-                        name="email"
-                        className="yellow-input"
-                      />
-                    </div>
-
-                    {conditionFieldRender(errors, touched, "username")}
-                    <div className={styleForm.username}>
-                      <div className={styles.img_container}>
-                        <img src="/icons/password.png" />
+                      {conditionFieldRender(errors, touched, "username")}
+                      <div className={styleForm.username}>
+                        <div className={styles.img_container}>
+                          <img src="/icons/password.png" />
+                        </div>
+                        <Field
+                          placeholder="Введите логин"
+                          id="login"
+                          type="text"
+                          name="username"
+                          className="yellow-input"
+                        />
                       </div>
-                      <Field
-                        placeholder="Введите логин"
-                        id="login"
-                        type="text"
-                        name="username"
-                        className="yellow-input"
-                      />
-                    </div>
-                    {conditionFieldRender(errors, touched, "phone")}
-                    <div className={styleForm.phone}>
-                      <div className={styles.img_container}>
-                        <img src="/icons/password.png" />
+                      {conditionFieldRender(errors, touched, "phone")}
+                      <div className={styleForm.phone}>
+                        <div className={styles.img_container}>
+                          <img src="/icons/password.png" />
+                        </div>
+                        <Field
+                          placeholder="Введите номер телефона"
+                          id="phone"
+                          type="text"
+                          name="phone"
+                          className="yellow-input"
+                        />
                       </div>
-                      <Field
-                        placeholder="Введите номер телефона"
-                        id="phone"
-                        type="text"
-                        name="phone"
-                        className="yellow-input"
-                      />
-                    </div>
 
-                    {conditionFieldRender(errors, touched, "password")}
+                      {conditionFieldRender(errors, touched, "password")}
 
-                    <div className={styleForm.password}>
-                      <div className={styles.img_container}>
-                        <img src="/icons/password.png" />
+                      <div className={styleForm.password}>
+                        <div className={styles.img_container}>
+                          <img src="/icons/password.png" />
+                        </div>
+                        <Field
+                          placeholder="Введите пароль"
+                          id="password"
+                          type="password"
+                          name="password"
+                          className="yellow-input"
+                        />
                       </div>
-                      <Field
-                        placeholder="Введите пароль"
-                        id="password"
-                        type="password"
-                        name="password"
-                        className="yellow-input"
-                      />
                     </div>
                   </div>
-                </div>
-                <div className={styles.card_action}>
-                  <Link href={"/SignIn"}>Есть аккаунт? Вход</Link>
-                  <button
-                    className={styles.button_signup}
-                    type="submit"
-                    disabled={loading}
-                  >
-                    Регистрация
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
+                  <div className={styles.card_action}>
+                    <Link href={"/SignIn"}>Есть аккаунт? Вход</Link>
+                    <button
+                      className={styles.button_signup}
+                      type="submit"
+                      disabled={loading}
+                    >
+                      Регистрация
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       </div>
     </div>

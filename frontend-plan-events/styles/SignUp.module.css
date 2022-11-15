@@ -1,16 +1,23 @@
+.body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
 .root{
     padding-top: 20px;
     font-size: 20px;
     height: auto;
     margin: 0 auto;
-    margin-top:20px;
     width:35%;
-    min-width: 220px;
+    min-width: 250px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     color:var(--color_4);
     border-radius: 40px;
     background-color: white;
+    align-items: center;
 }
 .logo{
     display: flex;

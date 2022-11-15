@@ -1,32 +1,111 @@
-.events{
+.root{
+  width: 100%;
+  border: 1px;
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0);
+  
+}
+.head{
+  background-image: url('../public/user/pitanie.jpg');
+  
+  background-size: cover;
+  height: 65vh;
+  width: inherit;
+  border: 1px;
+  border-radius: inherit;
   display: flex;
-  margin:0 auto;
-  width:70%;
-  min-height: 80vh;
-  /* align-items: center; */
-  flex-direction: column;
+  align-items: flex-end;
+}
+
+.field{
+  display: flex;
+  
+  width: inherit;
+  vertical-align: bottom;
+  height: 15vh;
+  background: #eee;
+}
+.parent_logo_container{
+  display: flex;
+  align-items: flex-end;
+}
+.logo_container{
+  height: calc(15vh + 60px);
+}
+.logo{
+  width:120px;
+  height: 120px;
+  background-image: url('../public/user/ava1.png');
+  background-size: cover;
+  border-radius: 50%;
+  background-origin:content-box;
+  border: 5px solid #eee;
+  /* position: absolute; */
+}
+.field{
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user_data{
+  display: flex;
+  flex-direction: row;
+}
+
+.user_icons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 20%;
+  max-width: 200px;
+  align-items: center;
+}
+
+.user_icons>img{
+  height: 50px;
+  background-size: cover;
+}
+
+.name>h3{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.phone{
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.event_list{
+  margin-top: 20px;
+  width: inherit;
+  min-height: calc(100vh - 60px - 65vh); 
+  background: #eee;
+  border: 1px;
+  border-radius: 0 0 20px 20px;
 }
 .event{
   height: 10vh;
-  width: 100%;
+  width: 90%;
   margin-top: 15px;
-  /* border: 2px solid var(--color_0); */
   border-radius: 5px;
   padding: 0 15px;
   color: var(--color_4);
-}
-.event:hover{
-  border-left: 2px solid var(--color_1);
 }
 .event:hover>.event_head{
   color:var(--color_1);;
 }
 .event_head{
+  width: 90%;
+  padding: inherit;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
+.event_description{
+  padding: inherit;
+  width: 90%;
+}
 .event_head>p{
   padding-top: 5px;
   vertical-align: bottom;
