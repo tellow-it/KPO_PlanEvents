@@ -8,9 +8,9 @@ def test_auth_register_true():
     response = client.post(
         "/auth/register",
         json={
-            "username": "new_test1",
-            "email": "new_test1@mail.ru",
-            "name": "new",
+            "username": "new_test14",
+            "email": "new_test14@mail.ru",
+            "name": "new4",
             "password": "new",
             "phone_number": "89372436091",
             "birth": "26-11-2002",
@@ -21,6 +21,22 @@ def test_auth_register_true():
     assert response.json() == {
         "detail": "Successfully save data!"
     }
+
+
+def test_auth_register_without_params():
+    response = client.post(
+        "/auth/register",
+        json={
+            "username": "",
+            "email": "",
+            "name": "",
+            "password": "",
+            "phone_number": "",
+            "birth": "",
+            "sex": ""
+        },
+    )
+    assert response.status_code == 400
 
 
 def test_auth_register_exist():
@@ -96,6 +112,25 @@ def test_auth_register_sex():
     assert response.status_code == 400
     assert response.json() == {
         "detail": "Invalid input sex"
+    }
+
+
+def test_auth_register_data():
+    response = client.post(
+        "/auth/register",
+        json={
+            "username": "new127",
+            "email": "new127@mail.ru",
+            "name": "new7",
+            "password": "new7",
+            "phone_number": "89372436091",
+            "birth": "26.11.2002",
+            "sex": "MALE"
+        },
+    )
+    assert response.status_code == 500
+    assert response.json() == {
+        "Internal Server Error"
     }
 
 
@@ -185,3 +220,12 @@ def test_forgot_pass_email_not_exists():
     }
 
 
+def test_forgot_pass_without_params():
+    response = client.post(
+        "/auth/forgot-password",
+        json={
+            "email": "",
+            "new_password": ""
+        },
+    )
+    assert response.status_code == 404
