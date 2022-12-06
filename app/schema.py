@@ -43,6 +43,49 @@ class LoginSchema(BaseModel):
     password: str
 
 
+class CreatePartySchema(BaseModel):
+    name: str
+    description: Optional[str]
+    admin_id: str
+    lock_bucket: Optional[bool]
+
+
+class DeletePartySchema(BaseModel):
+    name: str
+    admin_id: str
+
+
+class UpdatePartySchema(BaseModel):
+    name: str
+    new_description: str
+
+
+class ReadPartySchema(BaseModel):
+    name: str
+    admin_id: str
+
+
+class CreateBucketSchema(BaseModel):
+    name: str
+    quantity: str
+    price: str
+
+
+class DeleteBucketSchema(BaseModel):
+    name: str
+    admin_id: str
+
+
+class UpdateBucketSchema(BaseModel):
+    name: str
+    new_description: str
+
+
+class ReadBucketSchema(BaseModel):
+    name: str
+    admin_id: str
+
+
 class ForgotPasswordSchema(BaseModel):
     email: str
     new_password: str

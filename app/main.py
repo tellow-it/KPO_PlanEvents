@@ -16,6 +16,7 @@ def init_app():
         'http://localhost:3000',
         'http://localhost:8000',
         'https://party-manager-2.herokuapp.com',
+        'https://kpo-party-manager.onrender.com'
     ]
 
     app.add_middleware(

@@ -1,5 +1,3 @@
-import email
-from multiprocessing import synchronize
 from sqlalchemy import update as sql_update
 from sqlalchemy.future import select
 
