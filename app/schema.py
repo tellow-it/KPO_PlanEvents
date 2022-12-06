@@ -54,7 +54,7 @@ class CreatePartySchema(BaseModel):
     lock_bucket: Optional[bool]
 
 
-class DeletePartySchema(BaseModel):
+class ReadPartySchema(BaseModel):
     id: str
 
 
@@ -66,7 +66,7 @@ class UpdatePartySchema(BaseModel):
     lock_bucket: Optional[bool]
 
 
-class ReadPartySchema(BaseModel):
+class DeletePartySchema(BaseModel):
     id: str
 
 
@@ -76,19 +76,19 @@ class CreateBucketSchema(BaseModel):
     price: str
 
 
-class DeleteBucketSchema(BaseModel):
-    name: str
-    admin_id: str
+class ReadBucketSchema(BaseModel):
+    id: str
 
 
 class UpdateBucketSchema(BaseModel):
-    name: str
-    new_description: str
+    id: str
+    name: Optional[str]
+    quantity: Optional[str]
+    price: Optional[str]
 
 
-class ReadBucketSchema(BaseModel):
-    name: str
-    admin_id: str
+class DeleteBucketSchema(BaseModel):
+    id: str
 
 
 class ForgotPasswordSchema(BaseModel):

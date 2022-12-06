@@ -3,49 +3,39 @@ from datetime import datetime
 from uuid import uuid4
 from fastapi import HTTPException
 
-from passlib.context import CryptContext
-
-from app.model import Person, Users
-from app.schema import RegisterSchema
-from app.repository.users import UsersRepository
-from app.repository.person import PersonRepository
-from app.schema import LoginSchema, ForgotPasswordSchema
-from app.repository.auth_repo import JWTRepo
+from app.model import Bucket
+from app.schema import CreateBucketSchema, ReadBucketSchema, UpdateBucketSchema, DeleteBucketSchema, ReadPartySchema
+from app.repository.buckets import BucketRepository
 
 
 class BucketService:
 
     @staticmethod
-    async def register_service(register: RegisterSchema):
-
+    async def create_bucket(payload: CreateBucketSchema):
         # Create uuid
-        _person_id = str(uuid4())
-        _users_id = str(uuid4())
-
-        # convert birth date type from frontend str to date
-        birth_date = datetime.strptime(register.birth, '%d-%m-%Y')
+        _bucket_id = str(uuid4())
 
         # mapping request data to class entity table
-        _person = Person(id=_person_id, name=register.username, birth=birth_date,
-                         sex=register.sex, phone_number=register.phone_number)
+        _bucket = Bucket(id=_bucket_id,
+                         name=payload.name,
+                         quantity=payload.quantity,
+                         price=payload.price,
+                         )
+        await BucketRepository.create(**_bucket.dict())
+        return _bucket_id
 
-        _users = Users(id=_users_id, username=register.username, email=register.email,
-                       password=pwd_context.hash(register.password),
-                       person_id=_person_id)
+    @staticmethod
+    async def get_bucket_by_id(payload: ReadBucketSchema):
+        await BucketRepository.get_by_id(payload.id)
 
-        # Cheking the same username
-        _username = await UsersRepository.find_by_username(register.username)
-        if _username:
-            raise HTTPException(
-                status_code=400, detail="Username already exists!")
+    @staticmethod
+    async def get_all_buckets(payload: ReadPartySchema):
+        await BucketRepository.get_all_buckets(payload.id)
 
-        # Checking the same email
-        _email = await UsersRepository.find_by_email(register.email)
-        if _email:
-            raise HTTPException(
-                status_code=400, detail="Email already exists!")
+    @staticmethod
+    async def update_bucket(payload: UpdateBucketSchema):
+        await BucketRepository.update(payload.id, **payload.dict())
 
-        else:
-            #  insert to tables
-            await PersonRepository.create(**_person.dict())
-            await UsersRepository.create(**_users.dict())
+    @staticmethod
+    async def delete_bucket(payload: DeleteBucketSchema):
+        await BucketRepository.delete(payload.id)

@@ -25,8 +25,8 @@ class PartyService:
                        description=payload.description,
                        admin_id=payload.admin_id,
                        lock_bucket=payload.lock_bucket)
-
         await PartyRepository.create(**_party.dict())
+        return _party_id
 
     @staticmethod
     async def get_party_by_id(payload: ReadPartySchema):
