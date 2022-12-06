@@ -11,13 +11,13 @@ router = APIRouter(
 )
 
 
-@router.get("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.post("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_party(request_body: ReadPartySchema):
     result = await PartyService.get_party_by_id(request_body)
     return ResponseSchema(detail="Successfully get 1 data!", result=result)
 
 
-@router.get("/get_all_users_party", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.post("/get_all_users_party", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users_party(request_body: ReadPartySchema):
     result = await PartyService.get_all_user_party(request_body)
     return ResponseSchema(detail="Successfully get all data!", result=result)

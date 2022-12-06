@@ -11,13 +11,13 @@ router = APIRouter(
 )
 
 
-@router.get("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.post("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_bucket(request_body: ReadBucketSchema):
     result = await BucketService.get_bucket_by_id(request_body)
     return ResponseSchema(detail="Successfully get 1 data!", result=result)
 
 
-@router.get("/get_all_busckets", response_model=ResponseSchema, response_model_exclude_none=True)
+@router.post("/get_all_busckets", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_buckets(request_body: ReadPartySchema):
     result = await BucketService.get_all_buckets(request_body)
     return ResponseSchema(detail="Successfully get all data!", result=result)
