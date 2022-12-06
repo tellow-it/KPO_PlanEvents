@@ -35,10 +35,12 @@ def init_app():
     async def shutdown():
         await db.close()
 
-    from app.controller import authentication, users
+    from app.controller import authentication, users, parties, buckets
 
     app.include_router(authentication.router)
     app.include_router(users.router)
+    app.include_router(parties.router)
+    app.include_router(buckets.router)
 
     return app
 

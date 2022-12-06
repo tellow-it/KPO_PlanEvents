@@ -43,6 +43,10 @@ class LoginSchema(BaseModel):
     password: str
 
 
+class User_s_PartySchema(BaseModel):
+    id: str
+
+
 class CreatePartySchema(BaseModel):
     name: str
     description: Optional[str]
@@ -51,18 +55,19 @@ class CreatePartySchema(BaseModel):
 
 
 class DeletePartySchema(BaseModel):
-    name: str
-    admin_id: str
+    id: str
 
 
 class UpdatePartySchema(BaseModel):
-    name: str
-    new_description: str
+    id: str
+    name: Optional[str]
+    description: Optional[str]
+    admin_id: Optional[str]
+    lock_bucket: Optional[bool]
 
 
 class ReadPartySchema(BaseModel):
-    name: str
-    admin_id: str
+    id: str
 
 
 class CreateBucketSchema(BaseModel):

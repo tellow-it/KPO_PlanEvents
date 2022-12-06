@@ -16,3 +16,9 @@ class UserService:
             Person.sex,
             Person.phone_number).join_from(Users, Person).where(Users.username == username)
         return (await db.execute(query)).mappings().one()
+
+    @staticmethod
+    async def get_all_parties(id: str):
+        # query = # из связной таблицы по id юзера получить все мероприятия для этого юзера
+        # return = (await db.execute(query)).scalars.all()
+        pass

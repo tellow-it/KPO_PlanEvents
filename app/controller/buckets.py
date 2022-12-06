@@ -8,12 +8,9 @@ from app.service.users import UserService
 router = APIRouter(
     prefix="/buckets",
     tags=['bucket'],
-    dependencies=[Depends(JWTBearer())]
 )
 
 
 @router.get("/", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_bucket(credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
-    token = JWTRepo.extract_token(credentials)
-    result = await UserService.get_user_profile(token['username'])
-    return ResponseSchema(detail="Successfully fetch data!", result=result)
+async def get_bucket():
+    return ResponseSchema(detail="Successfully fetch data!")

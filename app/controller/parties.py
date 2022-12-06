@@ -1,26 +1,41 @@
-from fastapi import APIRouter,Depends,Security
+from fastapi import APIRouter, Depends, Security
 
-from app.schema import ResponseSchema, RegisterSchema, LoginSchema, ForgotPasswordSchema
+from app.schema import ResponseSchema, ReadPartySchema, CreatePartySchema, UpdatePartySchema, DeletePartySchema
 from app.repository.auth_repo import JWTBearer, JWTRepo
 from fastapi.security import HTTPAuthorizationCredentials
-from app.service.users import UserService
+from app.service.parties import PartyService
 
 router = APIRouter(
     prefix="/parties",
-    tags=['party'],
-    dependencies=[Depends(JWTBearer())]
+    tags=['party']
 )
 
 
-@router.get("/", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_party(credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
-    token = JWTRepo.extract_token(credentials)
-    result = await UserService.get_user_profile(token['username'])
-    return ResponseSchema(detail="Successfully fetch data!", result=result)
+@router.get("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_party(request_body: ReadPartySchema):
+    result = await PartyService.get_party_by_id(request_body)
+    return ResponseSchema(detail="Successfully get 1 data!", result=result)
 
 
-@router.get("/get_all", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_party(credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
-    token = JWTRepo.extract_token(credentials)
-    result = await UserService.get_user_profile(token['username'])
-    return ResponseSchema(detail="Successfully fetch data!", result=result)
+@router.get("/get_all_users_party", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_users_party(request_body: ReadPartySchema):
+    result = await PartyService.get_all_user_party(request_body)
+    return ResponseSchema(detail="Successfully get all data!", result=result)
+
+
+@router.post("/create", response_model=ResponseSchema, response_model_exclude_none=True)
+async def create_party(request_body: CreatePartySchema):
+    result = await PartyService.create_party(request_body)
+    return ResponseSchema(detail="Successfully create data!", result=result)
+
+
+@router.put("/update", response_model=ResponseSchema, response_model_exclude_none=True)
+async def update_party(request_body: UpdatePartySchema):
+    result = await PartyService.update_party(request_body)
+    return ResponseSchema(detail="Successfully update data!", result=result)
+
+
+@router.delete("/delete", response_model=ResponseSchema, response_model_exclude_none=True)
+async def create_party(request_body: DeletePartySchema):
+    result = await PartyService.delete_party(request_body)
+    return ResponseSchema(detail="Successfully delete data!", result=result)
