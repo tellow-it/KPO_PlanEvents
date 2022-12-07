@@ -20,6 +20,7 @@ class BucketService:
                          name=payload.name,
                          quantity=payload.quantity,
                          price=payload.price,
+                         party_id=payload.party_id
                          )
         await BucketRepository.create(**_bucket.dict())
         return _bucket_id

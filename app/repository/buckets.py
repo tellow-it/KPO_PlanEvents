@@ -1,5 +1,7 @@
 from app.model.buckets import Bucket
 from app.repository.base_repo import BaseRepo
+from app.config import db
+from sqlalchemy.future import select
 
 
 class BucketRepository(BaseRepo):
@@ -7,6 +9,5 @@ class BucketRepository(BaseRepo):
 
     @staticmethod
     async def get_all_buckets(party_id: str):
-        # query = получить все корзины из связной таблицы по id мероприятия
-        # return (await db.execute(query)).scalars().all()
-        pass
+        query = select(Bucket).where(Bucket.party_id == party_id)
+        return (await db.execute(query)).scalars().all()

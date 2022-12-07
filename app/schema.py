@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 import logging
 import re
-from typing import TypeVar, Optional
+from typing import TypeVar, Optional, List
 
 from pydantic import BaseModel, validator
 from app.model.person import Sex
@@ -53,6 +53,9 @@ class CreatePartySchema(BaseModel):
     admin_id: str
     lock_bucket: Optional[bool]
 
+    class Config:
+        orm_mode = True
+
 
 class ReadPartySchema(BaseModel):
     id: str
@@ -74,6 +77,10 @@ class CreateBucketSchema(BaseModel):
     name: str
     quantity: int
     price: int
+    party_id: str
+
+    class Config:
+        orm_mode = True
 
 
 class ReadBucketSchema(BaseModel):

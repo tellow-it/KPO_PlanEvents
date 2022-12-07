@@ -1,7 +1,8 @@
 from typing import List, Optional
 from sqlalchemy import Column, String, Boolean
 from sqlmodel import SQLModel, Field, Relationship
-
+from sqlalchemy.orm import relationship
+from app.model.buckets import Bucket
 
 class Party(SQLModel, table=True):
     __tablename__ = "parties"
@@ -11,4 +12,6 @@ class Party(SQLModel, table=True):
     description: Optional[str] = Field(sa_column=Column("description", String))
     admin_id: str = Field(sa_column=Column('admin_id', String))
     lock_bucket: Optional[bool] = Field(sa_column=Column('lock_basket', Boolean), default=False)
+
+    buckets = relationship('Bucket', back_populates='party')
 
