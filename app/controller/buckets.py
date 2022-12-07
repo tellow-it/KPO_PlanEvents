@@ -11,6 +11,7 @@ from app.service.buckets import BucketService
 router = APIRouter(
     prefix="/buckets",
     tags=['bucket'],
+    dependencies=[Depends(JWTBearer())]
 )
 
 

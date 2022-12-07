@@ -72,8 +72,8 @@ class DeletePartySchema(BaseModel):
 
 class CreateBucketSchema(BaseModel):
     name: str
-    quantity: str
-    price: str
+    quantity: int
+    price: int
 
 
 class ReadBucketSchema(BaseModel):
@@ -83,8 +83,8 @@ class ReadBucketSchema(BaseModel):
 class UpdateBucketSchema(BaseModel):
     id: str
     name: Optional[str]
-    quantity: Optional[str]
-    price: Optional[str]
+    quantity: Optional[int]
+    price: Optional[int]
 
 
 class DeleteBucketSchema(BaseModel):

@@ -8,6 +8,6 @@ class Bucket(SQLModel, table=True):
 
     id: Optional[str] = Field(None, primary_key=True, nullable=False)
     name: str = Field(sa_column=Column("name", String), nullable=False)
-    quantity: str = Field(sa_column=Column("quantity", String))
-    price: str = Field(sa_column=Column('price', String))
+    quantity: int = Field(sa_column=Column("quantity", Integer))
+    price: int = Field(sa_column=Column('price', Integer))
 
