@@ -10,5 +10,4 @@ class Bucket(SQLModel, table=True):
     name: str = Field(sa_column=Column("name", String), nullable=False)
     quantity: int = Field(sa_column=Column("quantity", Integer))
     price: int = Field(sa_column=Column('price', Integer))
-
     party_id: str = Field(sa_column=Column('party_id', String))
