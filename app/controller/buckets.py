@@ -1,6 +1,9 @@
+from uuid import UUID
+
 from fastapi import APIRouter, Depends, Security
 
-from app.schema import ResponseSchema, CreateBucketSchema, ReadBucketSchema, UpdateBucketSchema, DeleteBucketSchema, ReadPartySchema
+from app.schema import ResponseSchema, CreateBucketSchema, ReadBucketSchema, UpdateBucketSchema, DeleteBucketSchema, \
+    ReadPartySchema
 from app.repository.auth_repo import JWTBearer, JWTRepo
 from fastapi.security import HTTPAuthorizationCredentials
 from app.service.buckets import BucketService
@@ -11,16 +14,22 @@ router = APIRouter(
 )
 
 
-@router.post("/get_by_id", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_bucket(request_body: ReadBucketSchema):
-    result = await BucketService.get_bucket_by_id(request_body)
-    return ResponseSchema(detail="Successfully get 1 data!", result=result)
+@router.get("/", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_buckets():
+    result = await BucketService.get_all_buckets()
+    return ResponseSchema(detail="Successfully get bucket data!", result=result)
 
 
-@router.post("/get_all_busckets", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_buckets(request_body: ReadPartySchema):
-    result = await BucketService.get_all_buckets(request_body)
-    return ResponseSchema(detail="Successfully get all data!", result=result)
+@router.get("/{bucket_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_bucket(bucket_id: UUID):
+    result = await BucketService.get_bucket_by_id(bucket_id)
+    return ResponseSchema(detail="Successfully get bucket data!", result=result)
+
+
+@router.get("/get_all_buckets_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_buckets(party_id: UUID):
+    result = await BucketService.get_all_buckets_party(party_id)
+    return ResponseSchema(detail="Successfully get all bucket for party!", result=result)
 
 
 @router.post("/create", response_model=ResponseSchema, response_model_exclude_none=True)

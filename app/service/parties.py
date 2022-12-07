@@ -1,12 +1,6 @@
-import base64
-from datetime import datetime
-from uuid import uuid4
-from fastapi import HTTPException
-
-from passlib.context import CryptContext
-
+from uuid import uuid4, UUID
 from app.model import Party
-from app.schema import ReadPartySchema, UpdatePartySchema, DeletePartySchema
+from app.schema import UpdatePartySchema, DeletePartySchema
 from app.repository.parties import PartyRepository
 
 from app.schema import CreatePartySchema
@@ -29,12 +23,16 @@ class PartyService:
         return _party_id
 
     @staticmethod
-    async def get_party_by_id(payload: ReadPartySchema):
-        await PartyRepository.get_by_id(payload.id)
+    async def get_party_by_id(payload: UUID):
+        await PartyRepository.get_by_id(str(payload))
 
     @staticmethod
-    async def get_all_user_party(payload: ReadPartySchema):
-        await PartyRepository.find_all_users_party(payload.id)
+    async def get_all():
+        await PartyRepository.get_all()
+
+    @staticmethod
+    async def get_all_user_party(payload: UUID):
+        await PartyRepository.find_all_users_party(str(payload))
 
     @staticmethod
     async def update_party(payload: UpdatePartySchema):

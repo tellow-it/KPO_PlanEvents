@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from fastapi import APIRouter, Depends, Security
 
 from app.schema import ResponseSchema, User_s_PartySchema
@@ -19,7 +21,13 @@ async def get_user_profile(credentials: HTTPAuthorizationCredentials = Security(
     return ResponseSchema(detail="Successfully get user data!", result=result)
 
 
-@router.get("/get_all_party", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_party(request_body: User_s_PartySchema):
-    result = await UserService.get_all_parties(request_body.id)
-    return ResponseSchema(detail="Successfully all data!", result=result)
+@router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_users():
+    result = await UserService.get_all_users()
+    return ResponseSchema(detail="Successfully get all user data!", result=result)
+
+
+@router.get("/get_all_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_party_for_id(party_id: UUID):
+    result = await UserService.get_all_parties(party_id)
+    return ResponseSchema(detail="Successfully all users for !", result=result)

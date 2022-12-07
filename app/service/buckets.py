@@ -1,6 +1,6 @@
 import base64
 from datetime import datetime
-from uuid import uuid4
+from uuid import uuid4, UUID
 from fastapi import HTTPException
 
 from app.model import Bucket
@@ -25,12 +25,16 @@ class BucketService:
         return _bucket_id
 
     @staticmethod
-    async def get_bucket_by_id(payload: ReadBucketSchema):
-        await BucketRepository.get_by_id(payload.id)
+    async def get_bucket_by_id(bucket_id: UUID):
+        await BucketRepository.get_by_id(str(bucket_id))
 
     @staticmethod
-    async def get_all_buckets(payload: ReadPartySchema):
-        await BucketRepository.get_all_buckets(payload.id)
+    async def get_all_buckets_party(party_id: UUID):
+        await BucketRepository.get_all_buckets(str(party_id))
+
+    @staticmethod
+    async def get_all_buckets():
+        await BucketRepository.get_all()
 
     @staticmethod
     async def update_bucket(payload: UpdateBucketSchema):

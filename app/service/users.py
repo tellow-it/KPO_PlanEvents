@@ -1,6 +1,9 @@
+from uuid import UUID
+
 from sqlalchemy.future import select
 from app.model import Users, Person
 from app.config import db
+from app.repository.users import UsersRepository
 
 
 class UserService:
@@ -18,7 +21,11 @@ class UserService:
         return (await db.execute(query)).mappings().one()
 
     @staticmethod
-    async def get_all_parties(id: str):
+    async def get_all_users():
+        await UsersRepository.get_all()
+
+    @staticmethod
+    async def get_all_parties(party_id: UUID):
         # query = # из связной таблицы по id юзера получить все мероприятия для этого юзера
         # return = (await db.execute(query)).scalars.all()
         pass
