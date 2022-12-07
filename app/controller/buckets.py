@@ -21,13 +21,13 @@ async def get_all_buckets():
 
 
 @router.get("/{bucket_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_bucket(bucket_id: UUID):
+async def get_bucket(bucket_id: str):
     result = await BucketService.get_bucket_by_id(bucket_id)
     return ResponseSchema(detail="Successfully get bucket data!", result=result)
 
 
 @router.get("/get_all_buckets_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_buckets(party_id: UUID):
+async def get_all_buckets(party_id: str):
     result = await BucketService.get_all_buckets_party(party_id)
     return ResponseSchema(detail="Successfully get all bucket for party!", result=result)
 
@@ -44,7 +44,7 @@ async def update_bucket(request_body: UpdateBucketSchema):
     return ResponseSchema(detail="Successfully update data!", result=result)
 
 
-@router.delete("/delete", response_model=ResponseSchema, response_model_exclude_none=True)
-async def create_bucket(request_body: DeleteBucketSchema):
-    result = await BucketService.delete_bucket(request_body)
+@router.delete("/delete/{bucket_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def create_bucket(bucket_id: str):
+    result = await BucketService.delete_bucket(bucket_id)
     return ResponseSchema(detail="Successfully delete data!", result=result)

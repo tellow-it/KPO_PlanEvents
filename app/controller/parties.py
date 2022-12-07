@@ -26,7 +26,7 @@ async def get_party(party_id: str):
 
 
 @router.get("/get_all_users_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_users_party(party_id: UUID):
+async def get_all_users_party(party_id: str):
     result = await PartyService.get_all_user_party(party_id)
     return ResponseSchema(detail="Successfully get all data!", result=result)
 
@@ -43,7 +43,7 @@ async def update_party(request_body: UpdatePartySchema):
     return ResponseSchema(detail="Successfully update data!", result=result)
 
 
-@router.delete("/delete", response_model=ResponseSchema, response_model_exclude_none=True)
-async def create_party(request_body: DeletePartySchema):
-    result = await PartyService.delete_party(request_body)
+@router.delete("/delete/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def create_party(party_id: str):
+    result = await PartyService.delete_party(party_id)
     return ResponseSchema(detail="Successfully delete data!", result=result)

@@ -27,7 +27,7 @@ async def get_all_users():
     return ResponseSchema(detail="Successfully get all user data!", result=result)
 
 
-@router.get("/get_all_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_party_for_id(party_id: UUID):
-    result = await UserService.get_all_parties(party_id)
+@router.get("/get_all_party/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_party_for_id(user_id: str):
+    result = await UserService.get_all_parties(user_id)
     return ResponseSchema(detail="Successfully all users for !", result=result)

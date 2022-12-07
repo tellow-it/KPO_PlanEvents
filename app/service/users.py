@@ -25,7 +25,7 @@ class UserService:
         return await UsersRepository.get_all()
 
     @staticmethod
-    async def get_all_parties(party_id: UUID):
+    async def get_all_parties(user_id: str):
         # query = # из связной таблицы по id юзера получить все мероприятия для этого юзера
         # return = (await db.execute(query)).scalars.all()
         pass

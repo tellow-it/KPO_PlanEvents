@@ -31,13 +31,13 @@ class PartyService:
         return await PartyRepository.get_all()
 
     @staticmethod
-    async def get_all_user_party(payload: UUID):
-        return await PartyRepository.find_all_users_party(str(payload))
+    async def get_all_user_party(party_id: str):
+        return await PartyRepository.find_all_users_party(party_id)
 
     @staticmethod
     async def update_party(payload: UpdatePartySchema):
         return await PartyRepository.update(payload.id, **payload.dict())
 
     @staticmethod
-    async def delete_party(payload: DeletePartySchema):
-        return await PartyRepository.delete(payload.id)
+    async def delete_party(party_id: str):
+        return await PartyRepository.delete(party_id)
