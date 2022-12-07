@@ -12,5 +12,5 @@ class Bucket(SQLModel, table=True):
     quantity: int = Field(sa_column=Column("quantity", Integer))
     price: int = Field(sa_column=Column('price', Integer))
 
-    party_id = Column(String, ForeignKey("parties.id"))
-    party = relationship('Party', back_populates='buckets')
+    party_id = Field(sa_column=Column('party_id', String))
+

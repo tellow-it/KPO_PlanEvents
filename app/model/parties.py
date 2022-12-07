@@ -13,5 +13,5 @@ class Party(SQLModel, table=True):
     admin_id: str = Field(sa_column=Column('admin_id', String))
     lock_bucket: Optional[bool] = Field(sa_column=Column('lock_basket', Boolean), default=False)
 
-    buckets = relationship('Bucket', back_populates='party')
+
 

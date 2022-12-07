@@ -53,9 +53,6 @@ class CreatePartySchema(BaseModel):
     admin_id: str
     lock_bucket: Optional[bool]
 
-    class Config:
-        orm_mode = True
-
 
 class ReadPartySchema(BaseModel):
     id: str
@@ -78,9 +75,6 @@ class CreateBucketSchema(BaseModel):
     quantity: int
     price: int
     party_id: str
-
-    class Config:
-        orm_mode = True
 
 
 class ReadBucketSchema(BaseModel):
