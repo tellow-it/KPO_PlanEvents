@@ -1,8 +1,7 @@
-from uuid import uuid4, UUID
+from uuid import uuid4
 from app.model import Party
-from app.schema import UpdatePartySchema, DeletePartySchema
+from app.schema import UpdatePartySchema
 from app.repository.parties import PartyRepository
-
 from app.schema import CreatePartySchema
 
 

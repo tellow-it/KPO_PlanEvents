@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from sqlalchemy.future import select
 from app.model import Users, Person
 from app.config import db

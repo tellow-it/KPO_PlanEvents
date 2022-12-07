@@ -1,7 +1,6 @@
-from typing import List, Optional
-from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlmodel import SQLModel, Field, Relationship
-from sqlalchemy.orm import relationship
+from typing import Optional
+from sqlalchemy import Column, String, Integer
+from sqlmodel import SQLModel, Field
 
 
 class Bucket(SQLModel, table=True):
@@ -12,5 +11,4 @@ class Bucket(SQLModel, table=True):
     quantity: int = Field(sa_column=Column("quantity", Integer))
     price: int = Field(sa_column=Column('price', Integer))
 
-    party_id = Field(sa_column=Column('party_id', String))
-
+    party_id: str = Field(sa_column=Column('party_id', String))

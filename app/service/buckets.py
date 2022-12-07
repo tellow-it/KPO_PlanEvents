@@ -1,10 +1,6 @@
-import base64
-from datetime import datetime
-from uuid import uuid4, UUID
-from fastapi import HTTPException
-
+from uuid import uuid4
 from app.model import Bucket
-from app.schema import CreateBucketSchema, ReadBucketSchema, UpdateBucketSchema, DeleteBucketSchema, ReadPartySchema
+from app.schema import CreateBucketSchema, UpdateBucketSchema
 from app.repository.buckets import BucketRepository
 
 
