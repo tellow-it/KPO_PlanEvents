@@ -9,8 +9,7 @@ from app.service.parties import PartyService
 
 router = APIRouter(
     prefix="/parties",
-    tags=['party'],
-    dependencies=[Depends(JWTBearer())]
+    tags=['party']
 )
 
 
