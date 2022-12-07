@@ -103,7 +103,7 @@
     
     margin: 20px 20px;
     margin-top: 90px;
-    min-height: calc(100vh - 40px); 
+    min-height: calc(100vh - 40px - 70px); 
     width: 100%;
     position: relative;
     min-width: 400px;

@@ -52,7 +52,7 @@ export default function Home() {
         <div className={styles.event_list}>
         {array.map((v, index) => {
             return (
-              <Link href={"/events/" + v.id + "/basket"} key={index}>
+              <Link href={"/events/" + v.id + "/settings"} key={index}>
                 <a className={styles.event}>
                   <div className={styles.event_head}>
                     <h2>{v.name}</h2>
