@@ -24,20 +24,20 @@ class PartyService:
 
     @staticmethod
     async def get_party_by_id(payload: UUID):
-        await PartyRepository.get_by_id(str(payload))
+        return await PartyRepository.get_by_id(str(payload))
 
     @staticmethod
     async def get_all():
-        await PartyRepository.get_all()
+        return await PartyRepository.get_all()
 
     @staticmethod
     async def get_all_user_party(payload: UUID):
-        await PartyRepository.find_all_users_party(str(payload))
+        return await PartyRepository.find_all_users_party(str(payload))
 
     @staticmethod
     async def update_party(payload: UpdatePartySchema):
-        await PartyRepository.update(payload.id, **payload.dict())
+        return await PartyRepository.update(payload.id, **payload.dict())
 
     @staticmethod
     async def delete_party(payload: DeletePartySchema):
-        await PartyRepository.delete(payload.id)
+        return await PartyRepository.delete(payload.id)

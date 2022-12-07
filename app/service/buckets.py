@@ -26,20 +26,20 @@ class BucketService:
 
     @staticmethod
     async def get_bucket_by_id(bucket_id: UUID):
-        await BucketRepository.get_by_id(str(bucket_id))
+        return await BucketRepository.get_by_id(str(bucket_id))
 
     @staticmethod
     async def get_all_buckets_party(party_id: UUID):
-        await BucketRepository.get_all_buckets(str(party_id))
+        return await BucketRepository.get_all_buckets(str(party_id))
 
     @staticmethod
     async def get_all_buckets():
-        await BucketRepository.get_all()
+        return await BucketRepository.get_all()
 
     @staticmethod
     async def update_bucket(payload: UpdateBucketSchema):
-        await BucketRepository.update(payload.id, **payload.dict())
+        return await BucketRepository.update(payload.id, **payload.dict())
 
     @staticmethod
     async def delete_bucket(payload: DeleteBucketSchema):
-        await BucketRepository.delete(payload.id)
+        return await BucketRepository.delete(payload.id)

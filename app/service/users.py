@@ -22,7 +22,7 @@ class UserService:
 
     @staticmethod
     async def get_all_users():
-        await UsersRepository.get_all()
+        return await UsersRepository.get_all()
 
     @staticmethod
     async def get_all_parties(party_id: UUID):
