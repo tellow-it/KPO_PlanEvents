@@ -23,8 +23,8 @@ class PartyService:
         return _party_id
 
     @staticmethod
-    async def get_party_by_id(payload: UUID):
-        return await PartyRepository.get_by_id(str(payload))
+    async def get_party_by_id(party_id: str):
+        return await PartyRepository.get_by_id(party_id)
 
     @staticmethod
     async def get_all():

@@ -20,7 +20,7 @@ async def get_all():
 
 
 @router.get("/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_party(party_id: UUID):
+async def get_party(party_id: str):
     result = await PartyService.get_party_by_id(party_id)
     return ResponseSchema(detail="Successfully get 1 data!", result=result)
 
