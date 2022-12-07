@@ -2,7 +2,7 @@ from typing import List, Optional
 from sqlalchemy import Column, String, Boolean
 from sqlmodel import SQLModel, Field, Relationship
 from sqlalchemy.orm import relationship
-from app.model.buckets import Bucket
+
 
 class Party(SQLModel, table=True):
     __tablename__ = "parties"

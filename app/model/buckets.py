@@ -2,7 +2,6 @@ from typing import List, Optional
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlmodel import SQLModel, Field, Relationship
 from sqlalchemy.orm import relationship
-from app.model.parties import Party
 
 
 class Bucket(SQLModel, table=True):
@@ -15,4 +14,3 @@ class Bucket(SQLModel, table=True):
 
     party_id = Column(String, ForeignKey("parties.id"))
     party = relationship('Party', back_populates='buckets')
-
