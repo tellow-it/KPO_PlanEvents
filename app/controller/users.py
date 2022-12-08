@@ -5,6 +5,7 @@ from app.repository.auth_repo import JWTBearer, JWTRepo
 from fastapi.security import HTTPAuthorizationCredentials
 
 from app.service.m2m_user_party import M2MUserPartyService
+from app.service.parties import PartyService
 from app.service.users import UserService
 from app.service.m2m_user_bucket import M2MUserBucketService
 
@@ -29,7 +30,11 @@ async def get_all_users():
 
 @router.get("/get_all_party/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_party_for_user(user_id: str):
-    result = await M2MUserPartyService.get_all_parties_user(user_id)
+    parties = await M2MUserPartyService.get_all_parties_user(user_id)
+    result = []
+    for party in parties:
+        party_info = await PartyService.get_party_by_id(party)
+        result.append(party_info)
     return ResponseSchema(detail="Successfully all parties for user!", result=result)
 
 

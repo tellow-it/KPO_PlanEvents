@@ -10,7 +10,7 @@ class M2MUserPartyRepository(BaseRepo):
 
     @staticmethod
     async def get_all_parties_user(user_id: str):
-        query = select(M2M_User_Party).where(M2M_User_Party.user_id == user_id)
+        query = select(M2M_User_Party.party_id).where(M2M_User_Party.user_id == user_id)
         return (await db.execute(query)).scalars().all()
 
     @staticmethod
