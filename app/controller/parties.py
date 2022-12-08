@@ -7,6 +7,7 @@ from app.repository.auth_repo import JWTBearer, JWTRepo
 from fastapi.security import HTTPAuthorizationCredentials
 from app.service.parties import PartyService
 from app.service.m2m_user_party import M2MUserPartyService
+from app.service.buckets import BucketService
 
 router = APIRouter(
     prefix="/parties",
@@ -54,6 +55,7 @@ async def update_party(request_body: UpdatePartySchema):
 async def delete_party(party_id: str):
     result = await PartyService.delete_party(party_id)
     await M2MUserPartyService.delete_m2m_party(party_id)
+    await BucketService.delete_all_bucket(party_id)
     return ResponseSchema(detail="Successfully delete data!", result=result)
 
 

@@ -40,3 +40,7 @@ class BucketService:
     @staticmethod
     async def delete_bucket(bucket_id: str):
         return await BucketRepository.delete(bucket_id)
+
+    @staticmethod
+    async def delete_all_bucket(party_id: str):
+        return await BucketRepository.delete_all_buckets_for_party(party_id)

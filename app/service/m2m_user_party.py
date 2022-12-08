@@ -8,6 +8,10 @@ from app.schema import CreatePartySchema
 class M2MUserPartyService:
 
     @staticmethod
+    async def get_all_m2m():
+        return await M2MUserPartyRepository.get_all()
+
+    @staticmethod
     async def create_party(user_id: str, party_id: str):
         # mapping request data to class entity table
         _id = str(uuid4())

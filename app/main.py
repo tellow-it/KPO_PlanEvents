@@ -35,12 +35,13 @@ def init_app():
     async def shutdown():
         await db.close()
 
-    from app.controller import authentication, users, parties, buckets
+    from app.controller import authentication, users, parties, buckets, m2m_user_party
 
     app.include_router(authentication.router)
     app.include_router(users.router)
     app.include_router(parties.router)
     app.include_router(buckets.router)
+    app.include_router(m2m_user_party.router)
 
     return app
 
