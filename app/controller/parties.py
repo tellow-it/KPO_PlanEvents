@@ -29,9 +29,10 @@ async def get_all_users_party(party_id: str):
     return ResponseSchema(detail="Successfully get all users for party!", result=result)
 
 
-@router.post("/create", response_model=ResponseSchema, response_model_exclude_none=True)
-async def create_party(request_body: CreatePartySchema):
+@router.post("/create/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def create_party(user_id: str, request_body: CreatePartySchema):
     result = await PartyService.create_party(request_body)
+    await M2MUserPartyService.create_party(user_id, result)
     return ResponseSchema(detail="Successfully create data!", result=result)
 
 
