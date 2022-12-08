@@ -106,3 +106,8 @@ class DetailSchema(BaseModel):
 class ResponseSchema(BaseModel):
     detail: str
     result: Optional[T] = None
+
+
+class M2MUserPartySchema(BaseModel):
+    user_id: str
+    party_id: str
