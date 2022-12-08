@@ -6,6 +6,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 
 from app.service.m2m_user_party import M2MUserPartyService
 from app.service.users import UserService
+from app.service.m2m_user_bucket import M2MUserBucketService
 
 router = APIRouter(
     prefix="/users",
@@ -35,11 +36,13 @@ async def get_all_party_for_user(user_id: str):
 @router.delete("/user/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def delete_user(user_id: str):
     result = await UserService.delete_user(user_id)
-    result_m2m = await M2MUserPartyService.delete_m2m_user(user_id)
+    await M2MUserPartyService.delete_m2m_user(user_id)
+    await M2MUserBucketService.delete_user_m2m_us_bc(user_id)
     return ResponseSchema(detail="Successfully delete user_party!", result=result)
 
 
 @router.delete("/exit_party", response_model=ResponseSchema, response_model_exclude_none=True)
 async def delete_party(request_body: M2MUserPartySchema):
     result = await M2MUserPartyService.delete_m2m_us_pr(request_body.user_id, request_body.party_id)
+    await M2MUserBucketService.delete_user_party_m2m_us_bc(request_body.user_id, request_body.party_id)
     return ResponseSchema(detail="Successfully delete user_party!", result=result)

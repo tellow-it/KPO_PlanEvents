@@ -3,6 +3,7 @@ from app.schema import ResponseSchema, CreatePartySchema, UpdatePartySchema, M2M
 from app.service.parties import PartyService
 from app.service.m2m_user_party import M2MUserPartyService
 from app.service.buckets import BucketService
+from app.service.m2m_user_bucket import M2MUserBucketService
 
 router = APIRouter(
     prefix="/parties",
@@ -51,10 +52,12 @@ async def delete_party(party_id: str):
     result = await PartyService.delete_party(party_id)
     await M2MUserPartyService.delete_m2m_party(party_id)
     await BucketService.delete_all_bucket(party_id)
+    await M2MUserBucketService.delete_party_m2m_us_bc(party_id)
     return ResponseSchema(detail="Successfully delete data!", result=result)
 
 
-@router.delete("/delete_user", response_model=ResponseSchema, response_model_exclude_none=True)
-async def delete_user(request_body: M2MUserPartySchema):
+@router.delete("/kick_user", response_model=ResponseSchema, response_model_exclude_none=True)
+async def kick_user(request_body: M2MUserPartySchema):
     result = await M2MUserPartyService.delete_m2m_us_pr(request_body.user_id, request_body.party_id)
+    await M2MUserBucketService.delete_user_party_m2m_us_bc(request_body.user_id, request_body.party_id)
     return ResponseSchema(detail="Successfully delete user_party!", result=result)

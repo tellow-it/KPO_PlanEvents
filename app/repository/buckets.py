@@ -18,3 +18,4 @@ class BucketRepository(BaseRepo):
         query = sql_delete(Bucket).where(Bucket.party_id == party_id)
         await db.execute(query)
         await commit_rollback()
+

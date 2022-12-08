@@ -62,7 +62,7 @@ class UpdatePartySchema(BaseModel):
     name: Optional[str]
     description: Optional[str]
     admin_id: Optional[str]
-    lock_bucket: Optional[bool]
+    lock_bucket: Optional[bool] = False
 
 
 class DeletePartySchema(BaseModel):
@@ -110,3 +110,10 @@ class ResponseSchema(BaseModel):
 class M2MUserPartySchema(BaseModel):
     user_id: str
     party_id: str
+
+
+class M2MUserBucketSchema(BaseModel):
+    user_id: str
+    bucket_id: str
+    party_id: str
+
