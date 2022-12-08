@@ -10,7 +10,9 @@ class M2MUserPartyService:
     @staticmethod
     async def create_party(user_id: str, party_id: str):
         # mapping request data to class entity table
-        _m2m_user_party = M2M_User_Party(user_id=user_id,
+        _id = str(uuid4())
+        _m2m_user_party = M2M_User_Party(id=_id,
+                                         user_id=user_id,
                                          party_id=party_id)
         return await M2MUserPartyRepository.create(**_m2m_user_party.dict())
 
