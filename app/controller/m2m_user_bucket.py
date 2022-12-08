@@ -3,8 +3,8 @@ from app.schema import ResponseSchema
 from app.service.m2m_user_bucket import M2MUserBucketService
 
 router = APIRouter(
-    prefix="/m2m_user_party",
-    tags=['m2m_user_party'],
+    prefix="/m2m_user_bucket",
+    tags=['m2m_user_bucket'],
 )
 
 
