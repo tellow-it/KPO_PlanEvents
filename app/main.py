@@ -11,13 +11,7 @@ def init_app():
         description="Login Page and Registration Page",
         version="1"
     )
-    origins = [
-        'http://localhost',
-        'http://localhost:3000',
-        'http://localhost:8000',
-        'https://party-manager-2.herokuapp.com',
-        'https://kpo-party-manager.onrender.com'
-    ]
+    origins = ['*']
 
     app.add_middleware(
         CORSMiddleware,
