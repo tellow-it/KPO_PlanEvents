@@ -4,6 +4,7 @@ from app.service.parties import PartyService
 from app.service.m2m_user_party import M2MUserPartyService
 from app.service.buckets import BucketService
 from app.service.m2m_user_bucket import M2MUserBucketService
+from app.service.users import UserService
 
 router = APIRouter(
     prefix="/parties",
@@ -25,7 +26,11 @@ async def get_party(party_id: str):
 
 @router.get("/get_all_users_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users_party(party_id: str):
-    result = await M2MUserPartyService.get_all_users_party(party_id)
+    users = await M2MUserPartyService.get_all_users_party(party_id)
+    result = []
+    for user in users:
+        user_info = await UserService.get_user_profile_by_id(user)
+        result.append(user_info)
     return ResponseSchema(detail="Successfully get all users for party!", result=result)
 
 

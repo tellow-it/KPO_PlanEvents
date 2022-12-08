@@ -22,6 +22,12 @@ async def get_user_profile(credentials: HTTPAuthorizationCredentials = Security(
     return ResponseSchema(detail="Successfully get user data!", result=result)
 
 
+@router.get("/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_user_profile(user_id: str):
+    result = await UserService.get_user_profile_by_id(user_id)
+    return ResponseSchema(detail="Successfully get user data!", result=result)
+
+
 @router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users():
     result = await UserService.get_all_users()
