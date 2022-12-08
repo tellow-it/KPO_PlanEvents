@@ -8,6 +8,7 @@
     max-width: 650px;
     min-width: 380px;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 .head>h2{
     margin: 0 auto;

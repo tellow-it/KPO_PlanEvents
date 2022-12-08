@@ -12,6 +12,14 @@ export default function Basket({ user }) {
     {name:"Торт", price:"1000р за кг", quantity:"1.3кг"},
     {name:"Овощи", price:"400р за кг", quantity:"3кг"},
     {name:"Мясо", price:"800р за кг", quantity:"6кг"},
+    {name:"Арбуз", price:"40р за кг", quantity:"10кг"},
+    {name:"Торт", price:"1000р за кг", quantity:"1.3кг"},
+    {name:"Овощи", price:"400р за кг", quantity:"3кг"},
+    {name:"Мясо", price:"800р за кг", quantity:"6кг"},
+    {name:"Арбуз", price:"40р за кг", quantity:"10кг"},
+    {name:"Торт", price:"1000р за кг", quantity:"1.3кг"},
+    {name:"Овощи", price:"400р за кг", quantity:"3кг"},
+    {name:"Мясо", price:"800р за кг", quantity:"6кг"},
   ]);
 
   let [product, setProduct] = useState({name:"", price:"", quantity:""});
