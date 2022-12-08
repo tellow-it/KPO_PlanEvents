@@ -78,10 +78,8 @@ const SignIn = () => {
 
             <Formik
               initialValues={{
-                email: "",
                 username: "",
                 password: "",
-                phone: "",
               }}
               validationSchema={SigninSchema}
               onSubmit={loginHandler}

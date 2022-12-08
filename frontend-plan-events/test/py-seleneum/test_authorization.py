@@ -57,6 +57,20 @@ def test_empty_username_and_password(browser):
     assert password_error_div_information.text=="Required" 
     time.sleep(1)
 
+def test_success_login(browser):
+    # Зайти на сайт https://mail.yandex.ru/
+    browser.get(link)
+    browser.implicitly_wait(10)
+
+    input_username = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите логин']")
+    input_username.send_keys("asdf")
+
+    input_password = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите пароль']")
+    input_password.send_keys("asdf")
+
+    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    button_enter.click()
+
 
 def test_short_password(browser):
     browser.get(link)
@@ -95,21 +109,6 @@ def test_long_password(browser):
     
     time.sleep(1)
 
-def test_success_login(browser):
-    # Зайти на сайт https://mail.yandex.ru/
-    browser.get(link)
-    browser.implicitly_wait(10)
 
-    input_username = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите логин']")
-    input_username.send_keys("asdf")
-
-    input_password = browser.find_element(By.CSS_SELECTOR, "[placeholder='Введите пароль']")
-    input_password.send_keys("asdf")
-
-    button_enter = browser.find_element(By.CSS_SELECTOR, "button[type='submit']")
-    button_enter.click()
-
-    time.sleep(4)
-
-    assert 'Plan Events' == browser.find_element(By.TAG_NAME, 'h1').text
+    
 
