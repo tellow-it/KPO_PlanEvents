@@ -2,7 +2,7 @@ from app.model.buckets import Bucket
 from app.repository.base_repo import BaseRepo
 from app.config import db, commit_rollback
 from sqlalchemy.future import select
-from sqlalchemy import update as sql_update, delete as sql_delete
+from sqlalchemy import delete as sql_delete
 
 
 class BucketRepository(BaseRepo):

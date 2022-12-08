@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-
 from app.schema import ResponseSchema
 from app.service.m2m_user_party import M2MUserPartyService
 

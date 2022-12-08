@@ -1,7 +1,6 @@
 from fastapi import HTTPException
 import logging
-import re
-from typing import TypeVar, Optional, List
+from typing import TypeVar, Optional
 
 from pydantic import BaseModel, validator
 from app.model.person import Sex

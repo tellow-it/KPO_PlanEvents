@@ -1,8 +1,6 @@
 from uuid import uuid4
 from app.model import M2M_User_Party
-from app.schema import UpdatePartySchema
 from app.repository.m2m_user_party import M2MUserPartyRepository
-from app.schema import CreatePartySchema
 
 
 class M2MUserPartyService:

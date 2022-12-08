@@ -2,7 +2,7 @@ from sqlalchemy.future import select
 from app.model import M2M_User_Party
 from app.repository.base_repo import BaseRepo
 from app.config import db, commit_rollback
-from sqlalchemy import update as sql_update, delete as sql_delete
+from sqlalchemy import delete as sql_delete
 
 
 class M2MUserPartyRepository(BaseRepo):

@@ -1,11 +1,5 @@
-from uuid import UUID
-
-from fastapi import APIRouter, Depends, Security
-
-from app.schema import ResponseSchema, CreateBucketSchema, ReadBucketSchema, UpdateBucketSchema, DeleteBucketSchema, \
-    ReadPartySchema
-from app.repository.auth_repo import JWTBearer, JWTRepo
-from fastapi.security import HTTPAuthorizationCredentials
+from fastapi import APIRouter
+from app.schema import ResponseSchema, CreateBucketSchema, UpdateBucketSchema
 from app.service.buckets import BucketService
 
 router = APIRouter(

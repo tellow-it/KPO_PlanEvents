@@ -21,3 +21,8 @@ class UserService:
     @staticmethod
     async def get_all_users():
         return await UsersRepository.get_all()
+
+    @staticmethod
+    async def delete_user(user_id: str):
+        return await UsersRepository.delete(user_id)
+

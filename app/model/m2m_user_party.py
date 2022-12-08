@@ -1,5 +1,4 @@
 from typing import Optional
-
 from sqlalchemy import Column, String, Integer
 from sqlmodel import SQLModel, Field
 

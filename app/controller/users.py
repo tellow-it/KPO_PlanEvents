@@ -1,8 +1,6 @@
-from uuid import UUID
+from fastapi import APIRouter, Security
 
-from fastapi import APIRouter, Depends, Security
-
-from app.schema import ResponseSchema, User_s_PartySchema, M2MUserPartySchema
+from app.schema import ResponseSchema, M2MUserPartySchema
 from app.repository.auth_repo import JWTBearer, JWTRepo
 from fastapi.security import HTTPAuthorizationCredentials
 
@@ -35,8 +33,9 @@ async def get_all_party_for_user(user_id: str):
 
 
 @router.delete("/user/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def delete_party(user_id: str):
-    result = await M2MUserPartyService.delete_m2m_user(user_id)
+async def delete_user(user_id: str):
+    result = await UserService.delete_user(user_id)
+    result_m2m = await M2MUserPartyService.delete_m2m_user(user_id)
     return ResponseSchema(detail="Successfully delete user_party!", result=result)
 
 

@@ -1,10 +1,5 @@
-from uuid import UUID
-
-from fastapi import APIRouter, Depends, Security
-
+from fastapi import APIRouter
 from app.schema import ResponseSchema, CreatePartySchema, UpdatePartySchema, M2MUserPartySchema
-from app.repository.auth_repo import JWTBearer, JWTRepo
-from fastapi.security import HTTPAuthorizationCredentials
 from app.service.parties import PartyService
 from app.service.m2m_user_party import M2MUserPartyService
 from app.service.buckets import BucketService

@@ -2,9 +2,7 @@ import base64
 from datetime import datetime
 from uuid import uuid4
 from fastapi import HTTPException
-
 from passlib.context import CryptContext
-
 from app.model import Person, Users
 from app.schema import RegisterSchema
 from app.repository.users import UsersRepository

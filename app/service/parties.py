@@ -30,10 +30,6 @@ class PartyService:
         return await PartyRepository.get_all()
 
     @staticmethod
-    async def get_all_user_party(party_id: str):
-        return await PartyRepository.find_all_users_party(party_id)
-
-    @staticmethod
     async def update_party(payload: UpdatePartySchema):
         return await PartyRepository.update(payload.id, **payload.dict())
 
