@@ -15,6 +15,12 @@ router = APIRouter(
 )
 
 
+@router.get("/get_users_detail", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_users_detail():
+    result = await UserService.get_all_users_detail()
+    return ResponseSchema(detail="Successfully get all data!", result=result)
+
+
 @router.get("/", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_user_profile(credentials: HTTPAuthorizationCredentials = Security(JWTBearer())):
     token = JWTRepo.extract_token(credentials)
@@ -37,18 +43,6 @@ async def get_all_parties_user(user_id: str):
         if party_info is not None:
             result.append(party_info)
     return ResponseSchema(detail="Successfully get user data!", result=result)
-
-
-@router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_users():
-    result = await UserService.get_all_users()
-    return ResponseSchema(detail="Successfully get all data!", result=result)
-
-
-@router.get("/get_all_users_detail", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_all_users_detail():
-    result = await UserService.get_all_users()
-    return ResponseSchema(detail="Successfully get all data!", result=result)
 
 
 @router.delete("/delete/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
