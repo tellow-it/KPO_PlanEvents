@@ -2,6 +2,7 @@ from sqlalchemy import update as sql_update
 from sqlalchemy.future import select
 from app.config import db, commit_rollback
 from app.model.users import Users
+from app.model.person import Person
 from app.repository.base_repo import BaseRepo
 
 
@@ -24,3 +25,19 @@ class UsersRepository(BaseRepo):
             password=password).execution_options(synchronize_session="fetch")
         await db.execute(query)
         await commit_rollback()
+
+    @staticmethod
+    async def get_all_detail():
+        query = select(
+            Users.id,
+            Users.username,
+            Users.email,
+            Person.name,
+            Person.birth,
+            Person.sex,
+            Person.phone_number).join_from(Users, Person)
+        return (await db.execute(query)).mappings().all()
+
+
+
+
