@@ -31,7 +31,7 @@ async def get_user_profile(user_id: str):
 
 @router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users():
-    return ResponseSchema(detail="Successfully get all user data!", result='No work')
+    return ResponseSchema(detail="Successfully get all user data!", result={'status': 'no work'})
 
 
 @router.get("/get_all_users_new", response_model=ResponseSchema, response_model_exclude_none=True)
