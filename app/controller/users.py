@@ -46,6 +46,7 @@ async def get_all_party_for_user(user_id: str):
     return ResponseSchema(detail="Successfully all parties for user!", result=result)
 
 
+
 @router.delete("/user/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def delete_user(user_id: str):
     result = await UserService.delete_user(user_id)
