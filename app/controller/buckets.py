@@ -69,7 +69,7 @@ async def add_user(request_body: M2MUserBucketSchema):
 
 @router.delete("/remove_user_from_bucket", response_model=ResponseSchema, response_model_exclude_none=True)
 async def remove_user(request_body: M2MUserBucketSchema):
-    result = await M2MUserBucketService.delete_m2m_us_bc(request_body.user_id, request_body.bucket_id, request_body.party_id)
+    result = await M2MUserBucketService.delete_user_from_bucket(request_body)
     return ResponseSchema(detail="Successfully add user!", result=result)
 
 
