@@ -46,7 +46,8 @@ async def get_price_for_user(user_id: str, party_id: str):
         bucket_info = dict(await BucketService.get_bucket_by_id(bc))
         bucket_info['number_people'] = len(await M2MUserBucketService.get_all_users_bucket(bc))
         if bucket_info['number_people'] != 0:
-            bucket_info['price_for_user'] = bucket_info['quantity'] * bucket_info['price'] / bucket_info['number_people']
+            bucket_info['price_for_user'] = bucket_info['quantity'] * bucket_info['price'] / bucket_info[
+                'number_people']
         result.append(bucket_info)
 
     return ResponseSchema(detail="Successfully get total sum for party!", result=result)
@@ -60,9 +61,9 @@ async def create_bucket(request_body: CreateBucketSchema):
 
 @router.post("/add_user", response_model=ResponseSchema, response_model_exclude_none=True)
 async def add_user(request_body: M2MUserBucketSchema):
-    result = await M2MUserBucketService.create_party(request_body.user_id,
-                                                     request_body.bucket_id,
-                                                     request_body.party_id)
+    result = await M2MUserBucketService.create_bucket(request_body.user_id,
+                                                      request_body.bucket_id,
+                                                      request_body.party_id)
 
     return ResponseSchema(detail="Successfully add user!", result=result)
 
