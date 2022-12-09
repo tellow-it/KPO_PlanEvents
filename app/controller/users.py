@@ -22,6 +22,23 @@ async def get_user_profile(credentials: HTTPAuthorizationCredentials = Security(
     return ResponseSchema(detail="Successfully get user data!", result=result)
 
 
+@router.get("/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_user_profile_by_id(user_id: str):
+    result = await UserService.get_user_profile_by_id(user_id)
+    return ResponseSchema(detail="Successfully get user data!", result=result)
+
+
+@router.get('/get_all_parties_user/{user_id}', response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_parties_user(user_id: str):
+    parties_id = await M2MUserPartyService.get_all_parties_user(user_id)
+    result = []
+    for pr_id in parties_id:
+        party_info = await PartyService.get_party_by_id(pr_id)
+        if party_info is not None:
+            result.append(party_info)
+    return ResponseSchema(detail="Successfully get user data!", result=result)
+
+
 @router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users():
     result = await UserService.get_all_users()
@@ -32,12 +49,6 @@ async def get_all_users():
 async def get_all_users_detail():
     result = await UserService.get_all_users()
     return ResponseSchema(detail="Successfully get all data!", result=result)
-
-
-@router.get("/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
-async def get_user_profile_by_id(user_id: str):
-    result = await UserService.get_user_profile_by_id(user_id)
-    return ResponseSchema(detail="Successfully get user data!", result=result)
 
 
 @router.delete("/delete/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
