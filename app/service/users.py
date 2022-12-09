@@ -38,3 +38,15 @@ class UserService:
     async def delete_user(user_id: str):
         return await UsersRepository.delete(user_id)
 
+    @staticmethod
+    async def get_all_user_new():
+        query = select(
+            Users.id,
+            Users.username,
+            Users.email,
+            Person.name,
+            Person.birth,
+            Person.sex,
+            Person.phone_number).join_from(Users, Person)
+        return (await db.execute(query)).mappings().all()
+

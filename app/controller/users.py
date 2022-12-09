@@ -31,7 +31,12 @@ async def get_user_profile(user_id: str):
 
 @router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users():
-    result = await UserService.get_all()
+    return ResponseSchema(detail="Successfully get all user data!", result='No work')
+
+
+@router.get("/get_all_users_new", response_model=ResponseSchema, response_model_exclude_none=True)
+async def get_all_users_new():
+    result = await UserService.get_all_user_new()
     return ResponseSchema(detail="Successfully get all user data!", result=result)
 
 
@@ -43,7 +48,6 @@ async def get_all_party_for_user(user_id: str):
         party_info = await PartyService.get_party_by_id(party)
         result.append(party_info)
     return ResponseSchema(detail="Successfully all parties for user!", result=result)
-
 
 
 @router.delete("/user/{user_id}", response_model=ResponseSchema, response_model_exclude_none=True)
