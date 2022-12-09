@@ -29,7 +29,7 @@ async def get_all_buckets(party_id: str):
 
 @router.get("/get_total_price/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_buckets(party_id: str):
-    buckets = await BucketService.get_all_buckets_party(party_id)
+    buckets = list(await BucketService.get_all_buckets_party(party_id))
     result = 0
     for bc in buckets:
         result += bc['quantity'] * bc['price']
