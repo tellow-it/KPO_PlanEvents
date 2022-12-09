@@ -13,28 +13,47 @@ export default function Basket() {
   const { query } = useRouter();
   const userInfo = useContext(UserContext);
   userInfo.setLastEvent(query.id);
-  const { products } = useGetProducts([userInfo.lastEvent]);
-  const {loading, request, error, clearError } = useHttp();
+
+  const { loading, request, error, clearError } = useHttp();
   let [product, setProduct] = useState({ name: "", price: "", quantity: "" });
   let [add_product_mode, set_add_product_mode] = useState(false);
+  const { products } = useGetProducts([userInfo.lastEvent, add_product_mode]);
 
   let show_product_form = () => set_add_product_mode(!add_product_mode);
 
-  let change_product = (event) => {
+  const change_product = (event) => {
     console.log(event.target.value);
     product[event.target.id] = event.target.value;
     setProduct(product);
   };
+  const inputChange = (id) => {
+    return async function (event) {
+      if (event.target.checked) {
+        const data = await request("/buckets/add_user", "POST", {
+          user_id: userInfo.id,
+          party_id: userInfo.lastEvent,
+          bucket_id: id,
+        });
+      } else {
+        const data = await request("/buckets/delete_user", "POST", {
+          user_id: userInfo.id,
+          party_id: userInfo.lastEvent,
+          bucket_id: id,
+        });
+      }
+    };
+  };
 
-  let add_product = () => {
+  const add_product = async () => {
     if (!(product.name && product.quantity && product.price)) return;
-    products.push(product);
-    setProducts(products);
+    const data = await request("/buckets/create", "POST", {
+      ...product,
+      party_id: userInfo.lastEvent,
+    });
+
     setProduct({ name: "", price: "", quantity: "" });
     set_add_product_mode(false);
   };
-
-
 
   return (
     <MainContainer>
@@ -48,7 +67,9 @@ export default function Basket() {
           ) : (
             <div className={styles.list}>
               {products.map((item) => {
-                return <Product item={item}></Product>;
+                return (
+                  <Product item={item} inputChange={inputChange}></Product>
+                );
               })}
             </div>
           )}

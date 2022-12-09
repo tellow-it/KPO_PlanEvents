@@ -37,18 +37,24 @@ function MainContainer({ children, keywords }) {
               <p>События</p>
             </li>
           </Link>
+          <Link href={`/events/${userInfo.lastEvent}/settings`}>
+
           <li>
             <div className={styles.icon}>
               <img src="/icons/setting.png" />
             </div>
             <p>Настройки группы</p>
           </li>
+          </Link>
+
+          <Link href={`/events/${userInfo.lastEvent}/chat`}>
           <li>
             <div className={styles.icon}>
               <img src="/icons/chat.png" />
             </div>
             <p>Чат</p>
           </li>
+          </Link>
           <Link href={`/events/${userInfo.lastEvent}/basket`}>
             <li>
               <div className={styles.icon}>
@@ -57,6 +63,7 @@ function MainContainer({ children, keywords }) {
               <p>Список покупок</p>
             </li>
           </Link>
+          <Link href={`/events/${userInfo.lastEvent}/expense`}>
 
           <li>
             <div className={styles.icon}>
@@ -64,6 +71,8 @@ function MainContainer({ children, keywords }) {
             </div>
             <p>Затраты</p>
           </li>
+          </Link>
+          
         </ul>
       </div>
       <div className={styles.content_body}>
