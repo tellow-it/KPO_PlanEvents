@@ -9,7 +9,7 @@ export const useGetMyParties = (dependencies = []) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await request(`/users/get_all_party/${userInfo.id}`, "GET");
+      const data = await request(`/users/get_all_parties_user/${userInfo.id}`, "GET");
       console.log(data.result);
       setParties(data.result);
     };

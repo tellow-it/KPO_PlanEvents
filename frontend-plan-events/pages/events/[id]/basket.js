@@ -13,8 +13,8 @@ export default function Basket() {
   const { query } = useRouter();
   const userInfo = useContext(UserContext);
   userInfo.setLastEvent(query.id);
-  const { products, loading, request, error, clearError } = useGetProducts([userInfo.lastEvent]);
-
+  const { products } = useGetProducts([userInfo.lastEvent]);
+  const {loading, request, error, clearError } = useHttp();
   let [product, setProduct] = useState({ name: "", price: "", quantity: "" });
   let [add_product_mode, set_add_product_mode] = useState(false);
 

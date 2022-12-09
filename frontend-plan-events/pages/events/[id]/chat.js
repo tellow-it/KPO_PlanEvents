@@ -3,7 +3,7 @@ import { useState } from "react";
 import MainContainer from "../../../componets/MainContainer";
 import styles from "../../../styles/events/Chat.module.css";
 
-export default function Chat({user}) {
+export default function Chat() {
 	const {query} = useRouter();
 
 	let [messages, setMessages] = useState([
@@ -16,7 +16,7 @@ export default function Chat({user}) {
 	]);
 
 	return (
-		<MainContainer keywords={user.name}>
+		<MainContainer >
 			<div className={styles.root}>
 				<div className={styles.content}>
 					<h3>Свадьба Ашота</h3>
@@ -58,10 +58,3 @@ export default function Chat({user}) {
 	)
 };
 
-export async function getServerSideProps({params}) {
-	const response = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`)
-	const user = await response.json()
-	return {
-		props: {user}, // will be passed to the page component as props
-	}
-}

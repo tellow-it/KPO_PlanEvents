@@ -5,19 +5,19 @@ import { UserContext } from "../../../context/UserContext";
 import { useContext } from "react";
 import { useGetPartyUsers } from "../../../hooks/getAllUserParty";
 
-const users = [
-  { name: "Ашот", role: "Администратор", img: "/list_users/1.jpeg" },
-  { name: "Илья", role: "Закупщик", img: "/list_users/2.jpg" },
-  { name: "Марина", role: "Повар", img: "/list_users/3.jpg" },
-  { name: "Дарья", role: "", img: "" },
-  { name: "Дмитрий", role: "", img: "/list_users/5.jpg" },
-];
+// const users = [
+//   { name: "Ашот", role: "Администратор", img: "/list_users/1.jpeg" },
+//   { name: "Илья", role: "Закупщик", img: "/list_users/2.jpg" },
+//   { name: "Марина", role: "Повар", img: "/list_users/3.jpg" },
+//   { name: "Дарья", role: "", img: "" },
+//   { name: "Дмитрий", role: "", img: "/list_users/5.jpg" },
+// ];
 
 export default function Settings() {
   const { query } = useRouter();
   const userInfo = useContext(UserContext);
   userInfo.setLastEvent(query.id);
-//   const { users, loading, request, error, clearError } = useGetPartyUsers([userInfo.lastEvent]);
+  const { users, loading, request, error, clearError } = useGetPartyUsers([userInfo.lastEvent]);
 
   return (
     <MainContainer>
@@ -49,7 +49,7 @@ export default function Settings() {
                   {item.role ? (
                     <div className={styles.role}>
                       <div className={styles.role_content}>
-                        <p>{item.role}</p>
+                        <p>{item.telephoneNumber}</p>
                       </div>
                     </div>
                   ) : null}
@@ -58,14 +58,6 @@ export default function Settings() {
             })}
           </div>
           <div className={styles.settings}>
-            <div className={styles.prop}>
-              <img src="/icons/settings/change_back.png" />
-              <p>Изменить фон</p>
-            </div>
-            <div className={styles.prop}>
-              <img src="/icons/settings/set_role.png" />
-              <p>Назначить роли</p>
-            </div>
             <div className={styles.prop}>
               <img src="/icons/settings/remove-user.png" />
               <p>Удалить участника</p>
