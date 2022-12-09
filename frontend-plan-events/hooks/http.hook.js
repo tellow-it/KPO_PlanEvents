@@ -10,12 +10,13 @@ export const useHttp = () => {
     async (url, method = "GET", body = null, headers = {}) => {
       setLoading(true);
       try {
-        url = "https://party-menegment.herokuapp.com" + url;
+        url = "https://kpo-party-manager.onrender.com" + url;
         if (body) {
           body = JSON.stringify(body);
           headers["Content-Type"] = "application/json";
         }
-        headers["Authorization"] =  `Bearer ${auth.token}`;
+        if(!headers["Authorization"])
+          headers["Authorization"] =  `Bearer ${auth.token}`;
 
         const response = await fetch(url, {
           // mode: "no-cors",
