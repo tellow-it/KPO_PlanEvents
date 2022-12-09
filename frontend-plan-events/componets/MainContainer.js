@@ -47,14 +47,14 @@ function MainContainer({ children, keywords }) {
           </li>
           </Link>
 
-          <Link href={`/events/${userInfo.lastEvent}/chat`}>
+          {/* <Link href={`/events/${userInfo.lastEvent}/chat`}>
           <li>
             <div className={styles.icon}>
               <img src="/icons/chat.png" />
             </div>
             <p>Чат</p>
           </li>
-          </Link>
+          </Link> */}
           <Link href={`/events/${userInfo.lastEvent}/basket`}>
             <li>
               <div className={styles.icon}>
