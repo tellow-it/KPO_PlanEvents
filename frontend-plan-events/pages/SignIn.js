@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHttp } from "../hooks/http.hook";
 import { useMessage } from "../hooks/message.hook";
 import { AuthContext } from "../context/AuthContext";
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/SignUp.module.css";
 import Link from "next/link";
 import { Formik, Form, Field } from "formik";
@@ -20,6 +21,7 @@ const SigninSchema = Yup.object().shape({
 
 const SignIn = () => {
   const auth = useContext(AuthContext);
+  const userInfo = useContext(UserContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -37,9 +39,13 @@ const SignIn = () => {
   const loginHandler = async (form) => {
     try {
       const data = await request("/auth/login", "POST", { ...form });
-      console.log(data);
-      auth.login(data.access, data.refresh, "backend_not_get_me_id");
+      let headers = {};
+      headers["Authorization"] =  `Bearer ${data.result.access_token}`;
+      const userData = await request("/users", "GET", null, headers);
+      userInfo.setInfo(userData.result.name, userData.result.username, userData.result.email, userData.result.sex, userData.result.birth, userData.result.phone_number, userData.result.id)      
+      auth.login(data.result.access_token, data.result.access_token);
       auth.isAuthenticated = !!data.access;
+      console.log(userData)
     } catch (e) {
       console.error(e);
     }
@@ -76,13 +82,10 @@ const SignIn = () => {
                 <h3>Добрый день!</h3>
                 <p>Введите свой логин и пароль</p>
               </div>
-
               <Formik
                 initialValues={{
-                  email: "",
                   username: "",
                   password: "",
-                  phone: "",
                 }}
                 validationSchema={SigninSchema}
                 onSubmit={loginHandler}

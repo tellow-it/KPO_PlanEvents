@@ -12,7 +12,7 @@ import styles from "../styles/SignUp.module.css";
 const SignupSchema = Yup.object().shape({
   phone: Yup.number()
     .min(10000000000, "Too Short!")
-    .max(99999999999, "Too Long!")
+    .max(99999999999, "Too Long!") 
     .required("Required"),
   username: Yup.string()
     .min(2, "Too Short!")
