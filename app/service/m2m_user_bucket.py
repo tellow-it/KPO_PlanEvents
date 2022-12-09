@@ -15,15 +15,14 @@ class M2MUserBucketService:
         return await M2MUserBucketRepository.get_all_buckets_for_user(user_id, party_id)
 
     @staticmethod
-    async def create_bucket(user_id: str, bucket_id: str, party_id: str):
+    async def create_bucket_m2m(user_id: str, bucket_id: str, party_id: str):
         # mapping request data to class entity table
         _id = str(uuid4())
         _m2m_user_bucket = M2M_User_Bucket(id=_id,
                                            user_id=user_id,
                                            bucket_id=bucket_id,
                                            party_id=party_id)
-        if M2MUserBucketRepository.get_m2m_us_bs_pr(user_id, bucket_id, party_id) is None:
-            return await M2MUserBucketRepository.create(**_m2m_user_bucket.dict())
+        return await M2MUserBucketRepository.create(**_m2m_user_bucket.dict())
 
     @staticmethod
     async def get_all_users_bucket(bucket_id: str):

@@ -61,9 +61,9 @@ async def create_bucket(request_body: CreateBucketSchema):
 
 @router.post("/add_user", response_model=ResponseSchema, response_model_exclude_none=True)
 async def add_user(request_body: M2MUserBucketSchema):
-    result = await M2MUserBucketService.create_bucket(request_body.user_id,
-                                                      request_body.bucket_id,
-                                                      request_body.party_id)
+    result = await M2MUserBucketService.create_bucket_m2m(request_body.user_id,
+                                                          request_body.bucket_id,
+                                                          request_body.party_id)
 
     return ResponseSchema(detail="Successfully add user!", result=result)
 
