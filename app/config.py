@@ -4,7 +4,7 @@ from sqlmodel import SQLModel
 
 # DB_CONFIG = f'postgresql+asyncpg://postgres:DtnthDgjkt2002@localhost:5432/kpo_test'
 # DB_CONFIG = f'postgresql+asyncpg://vagllbujtngaby:b8e2f14be242b6f239ecb9f8cbbcb3c1b621c8ec5dc2c28613b5b03bb45b9d9f@ec2-176-34-215-248.eu-west-1.compute.amazonaws.com:5432/d6jmr629n0q553'
-DB_CONFIG = f'postgresql+asyncpg://kpo_party_manager_db_inyg_user:T5WSHyJVrHC66BtUYGZm9qV2QZJKHZpQ@dpg-ce8etu5a499c7nuuh2n0-a/kpo_party_manager_db_inyg'
+DB_CONFIG = f'postgresql+asyncpg://kpo_party_manager_db_wzfe_user:TfsSAhZPkiugmmpeTdgptQuRExAMNGPo@dpg-ce9iudsgqg4bcbgigbs0-a/kpo_party_manager_db_wzfe'
 
 SECRET_KEY = "kpo_project"
 ALGORITHM = 'HS256'
