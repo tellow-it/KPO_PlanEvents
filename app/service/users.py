@@ -31,7 +31,7 @@ class UserService:
         return (await db.execute(query)).mappings().one()
 
     @staticmethod
-    async def get_all_users():
+    async def get_all():
         return await UsersRepository.get_all()
 
     @staticmethod

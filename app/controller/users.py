@@ -31,8 +31,7 @@ async def get_user_profile(user_id: str):
 
 @router.get("/get_all_users", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users():
-    result = await UserService.get_all_users()
-    print(result)
+    result = await UserService.get_all()
     return ResponseSchema(detail="Successfully get all user data!", result=result)
 
 
