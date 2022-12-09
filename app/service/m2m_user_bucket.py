@@ -28,8 +28,8 @@ class M2MUserBucketService:
         return await M2MUserBucketRepository.get_all_users_to_bucket(bucket_id)
 
     @staticmethod
-    async def delete_m2m_us_bc(user_id: str, bucket_id: str):
-        return await M2MUserBucketRepository.delete_m2m_user_bucket(user_id, bucket_id)
+    async def delete_m2m_us_bc(user_id: str, bucket_id: str, party_id: str):
+        return await M2MUserBucketRepository.delete_m2m_user_bucket(user_id, bucket_id, party_id)
 
     @staticmethod
     async def delete_user_party_m2m_us_bc(user_id: str, party_id: str):
