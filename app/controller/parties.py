@@ -27,9 +27,11 @@ async def get_party(party_id: str):
 @router.get("/get_all_users_party/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_all_users_party(party_id: str):
     users = await M2MUserPartyService.get_all_users_party(party_id)
+    print(users)
     result = []
     for user in users:
         user_info = await UserService.get_user_profile_by_id(user)
+        print(user_info)
         result.append(user_info)
     return ResponseSchema(detail="Successfully get all users for party!", result=result)
 

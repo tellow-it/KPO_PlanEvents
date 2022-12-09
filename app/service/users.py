@@ -23,8 +23,12 @@ class UserService:
         query = select(
             Users.id,
             Users.username,
-            Users.email).where(Users.id == user_id)
-        return (await db.execute(query)).scalar()
+            Users.email,
+            Person.name,
+            Person.birth,
+            Person.sex,
+            Person.phone_number).join_from(Users, Person).where(Users.id == user_id)
+        return (await db.execute(query)).mappings().scalar_one_or_none()
 
     @staticmethod
     async def get_all_users():
