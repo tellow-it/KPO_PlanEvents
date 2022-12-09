@@ -29,11 +29,13 @@ async def get_all_buckets(party_id: str):
 
 @router.get("/get_total_price/{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
 async def get_total_price(party_id: str):
-    buckets = type(await BucketService.get_all_buckets_party(party_id))
-    # result = 0
-    # for bc in buckets:
-    #     result += bc['quantity'] * bc['price']
-    return ResponseSchema(detail="Successfully get total sum for party!", result=buckets)
+    buckets = await BucketService.get_all_buckets_party(party_id)
+    result = 0
+    for i in range(len(buckets)):
+        bucket_dict = dict(buckets[i])
+        result += bucket_dict['quantity'] * bucket_dict['price']
+
+    return ResponseSchema(detail="Successfully get all total for party!", result=result)
 
 
 @router.get("/get_price_for_user/{user_id}&{party_id}", response_model=ResponseSchema, response_model_exclude_none=True)
@@ -41,9 +43,10 @@ async def get_price_for_user(user_id: str, party_id: str):
     buckets = await M2MUserBucketService.get_all_buckets_for_user(user_id, party_id)
     result = []
     for bc in buckets:
-        bucket_info = await BucketService.get_bucket_by_id(bc)
+        bucket_info = dict(await BucketService.get_bucket_by_id(bc))
         bucket_info['number_people'] = len(await M2MUserBucketService.get_all_users_bucket(bc))
-        bucket_info['price_for_user'] = bucket_info['quantity'] * bucket_info['price'] / bucket_info['number_people']
+        if bucket_info['number_people'] != 0:
+            bucket_info['price_for_user'] = bucket_info['quantity'] * bucket_info['price'] / bucket_info['number_people']
         result.append(bucket_info)
 
     return ResponseSchema(detail="Successfully get total sum for party!", result=result)

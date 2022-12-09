@@ -15,21 +15,21 @@ class M2MUserBucketRepository(BaseRepo):
 
     @staticmethod
     async def get_all_buckets_for_user(user_id: str, party_id: str):
-        query = select(M2M_User_Bucket.bucket_id).where(M2M_User_Bucket.user_id == user_id,
-                                                        M2M_User_Bucket.party_id == party_id)
+        query = select(M2M_User_Bucket.bucket_id).where(
+            M2M_User_Bucket.user_id == user_id and M2M_User_Bucket.party_id == party_id)
         return (await db.execute(query)).scalars().all()
 
     @staticmethod
     async def delete_m2m_user_bucket(user_id: str, bucket_id: str):
-        query = sql_delete(M2M_User_Bucket).where(M2M_User_Bucket.user_id == user_id,
-                                                  M2M_User_Bucket.bucket_id == bucket_id)
+        query = sql_delete(M2M_User_Bucket).where(
+            M2M_User_Bucket.user_id == user_id and M2M_User_Bucket.bucket_id == bucket_id)
         await db.execute(query)
         await commit_rollback()
         return 'Delete ' + user_id + ' from ' + bucket_id
 
     @staticmethod
     async def delete_user_party_m2m_us_pr_bs(user_id: str, party_id: str):
-        query = sql_delete(M2M_User_Bucket).where(M2M_User_Bucket.user_id == user_id,
+        query = sql_delete(M2M_User_Bucket).where(M2M_User_Bucket.user_id == user_id and
                                                   M2M_User_Bucket.party_id == party_id)
         await db.execute(query)
         await commit_rollback()
