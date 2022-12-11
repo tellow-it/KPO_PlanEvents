@@ -10,7 +10,7 @@ export const useGetMyExpenses = (dependencies = []) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await request(`/buckets/get_price_for_user/${userInfo.id}&${userInfo.lastEvent}`, "GET");
-      console.log(data.result);
+      console.log("||||||",data.result);
       setExpenses(data.result);
     };
     fetchData();

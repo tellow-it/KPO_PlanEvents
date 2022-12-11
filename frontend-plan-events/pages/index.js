@@ -9,6 +9,7 @@ import ModalForm from "../componets/ModalForm";
 import AddEventsForm from "../componets/AddEventsForm";
 import { useGetMyParties } from "../hooks/getMyParties";
 import { useHttp } from "../hooks/http.hook";
+import Identicon from 'react-identicons';
 
 export default function Home() {
   const router = useRouter();
@@ -43,7 +44,8 @@ export default function Home() {
               <div className={styles.user_data}>
                 <div className={styles.parent_logo_container}>
                   <div className={styles.logo_container}>
-                    <div className={styles.logo}></div>
+                    <Identicon size={100} className={styles.logo} string={userInfo.id} />;
+
                   </div>
                 </div>
                 <div className={styles.data}>

@@ -32,13 +32,15 @@
   height: calc(15vh + 60px);
 }
 .logo{
-  width:120px;
-  height: 120px;
-  background-image: url('../public/user/ava1.png');
+  width:2rem;
+  height: 2rem;
+  /* background-image: url('../public/user/ava1.png'); */
   background-size: cover;
+  background-color: #ffff;
   border-radius: 50%;
   background-origin:content-box;
   border: 5px solid #eee;
+
   /* position: absolute; */
 }
 .field{

@@ -14,7 +14,6 @@ export default function Expense() {
     userInfo.lastEvent,
   ]);
   const numberFromString = (string) => +/[\d, .]{1,}/.exec(string)[0];
-
   let summ = 0;
 
   return (
@@ -29,12 +28,12 @@ export default function Expense() {
               let price = item.price;
               let quantity = item.quantity;
               let calculate = price * quantity;
-              summ += calculate;
+              summ += item.price_for_user;
               return (
                 <div className={styles.product}>
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.calculate}>
-                    <p>{price + "Р * " + quantity + " = " + calculate + "Р"}</p>
+                    <p>{price + "Р * " + quantity + "/"+item.number_people+" = " + item.price_for_user + "Р"}</p>
                   </div>
                 </div>
               );
